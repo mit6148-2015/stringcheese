@@ -65,6 +65,10 @@ if (Meteor.isServer) {
   });
 }
 
+Router.route('/', function () {
+  this.route('home', {path: '/'} );
+
+});
 
 /*
 Router.map(function(){
