@@ -1,11 +1,9 @@
 # stringcheese
-#READ ME FILE!
+a project on displaying trending instagram hashtags
 
-#This is the code for our project involving Global Trends
-
-#We need to to figure out:
-# Twitter APIs
-# Bootstrap
-# Meteor
-# Rails
+##We need to to figure out:
+1. Instagram APIs
+2. Bootstrap
+3. Meteor
+4. Rails
 
