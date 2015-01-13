@@ -1,13 +1,13 @@
+
 <head>
   <title>globaltrends</title>
   	 <!-- <link href="./dist/bootstrap-theme.css" rel="stylesheet">  -->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-	<!--<script type="text/javascript" src="http://jquery.com/"></script>-->
-<!--	<script type="text/javascript" src="../jquery1.11.2.js"></script>-->
-<!--<script type="text/javascript" src="https://github.com/jquery/jquery"></script>-->
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
-
+<!--<script type="text/javascript" src="globaltrends.js"></script>
+<script>window.onload = function(){globaltrends()};</script>-->
     <script type="text/javascript">
       google.load("visualization", "1", {packages:["geochart"]});
       google.setOnLoadCallback(drawRegionsMap);
@@ -21,31 +21,51 @@
           ['Brazil'],
           ['Canada'],
           ['France'],
-          ['RU']
+          ['Russia']
         ]);
-        var tempWidth = $(window).width();
+      //  var tempWidth = $(window).width();
         var options = {
           displayMode: 'text',
           backgroundColor: '#AEEEEE',
           enableRegionInteractivity: true,
           keepAspectRatio: true,
-          width: tempWidth
+          width: $(window).width(),
+          datalessRegionColor: '#659D32'
         };
 
         var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
 
         chart.draw(data, options);
+      function myClickHandler(){
+        var selection = chart.getSelection();
+        var message = '';
+        for (var i = 0; i < selection.length; i++) {
+            var item = selection[i];
+            if (item.row != null && item.column != null) {
+                message += '{row:' + item.row + ',column:' + item.column + '}';
+            } else if (item.row != null) {
+                message += '{row:' + item.row + '}';
+            } else if (item.column != null) {
+                message += '{column:' + item.column + '}';
+            }
+        }
+        if (message == '') {
+            message = 'nothing';
+        }
+        alert('You selected ' + message);
+    }
       }
-    </script>
+    google.load('visualization', '1', {packages: ['geochart'], callback: drawRegionsMap});
+     </script>
 </head>
 
 <body>
 
-		
+
 
 <nav class="navbar navbar-default">
 	<div class="container-fluid" id="bs-example-navbar-collapse-1">
-		<div class="navbar-header">
+    <div class="navbar-header">
     		<a class="navbar-brand" href="#">Global Trends</a>
     	</div>
       <!-- Search Button -->
