@@ -1,5 +1,5 @@
 # stringcheese
-##a project on displaying trending instagram hashtags
+a project on displaying trending instagram hashtags
 
 ##We need to to figure out:
 1. Instagram APIs
