@@ -11,3 +11,4 @@ jquery
 bootstrap
 accounts-ui
 accounts-password
+iron:router
