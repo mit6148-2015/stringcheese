@@ -3,6 +3,11 @@ if (Meteor.isClient) {
   Accounts.ui.config({
   passwordSignupFields: "USERNAME_ONLY"
 });
+  Template.Local.events({
+  'click #clickme': function() {
+    Router.go('/local');
+  }
+});
 }
 
 //     google.load("visualization", "1", {packages:["geochart"]});
@@ -70,6 +75,24 @@ Router.route('/', function () {
 
 });
 
+<<<<<<< HEAD
+
+Router.route('/', function () {
+  this.render('Home');
+});
+
+Router.route('/local', function () {
+  this.render('Local');
+});
+
+Router.route('/selected', function () {
+  this.render('Selected');
+});
+
+Router.route('/world', function () {
+  this.render('World');
+});
+=======
 /*
 Router.map(function(){
     this.route(name:String, options:Object);
@@ -104,3 +127,4 @@ Router.map(function(){
 //   path: '*'
 // });
 
+>>>>>>> e4b77b5ed1578fb9dbde412a4c1e391c713b46e3
