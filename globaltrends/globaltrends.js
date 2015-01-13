@@ -76,17 +76,17 @@ Router.map(function(){
 // name 'about' that
 // matches '/about' and automatically renders
 // template 'about'
-Router.map( function () {
-  this.route('about');
-});
+// Router.map( function () {
+//   this.route('about');
+// });
 
 // simple route with
 // name 'home' that
 // matches '/' and automatically renders
 // template 'home'
-this.route('home', {
-  path: '/'
-});
+// this.route('home', {
+//   path: '/'
+// });
 
 // complex route with
 // name 'notFound' that for example
@@ -96,7 +96,7 @@ this.route('home', {
 //// Define a global not found route as the very last route in your router
 //// Also this is different from the notFoundTemplate in your Iron Router
 //// configuration!
-this.route('notFound', {
-  path: '*'
-});
+// this.route('notFound', {
+//   path: '*'
+// });
 
