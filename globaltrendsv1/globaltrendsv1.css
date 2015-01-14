@@ -1,11 +1,11 @@
 /* CSS declarations go here */
 .login-link-and-dropdown-list.login-form-sign-in{
-	top:8px;
+	top:15px;
 }
 #login-dropdown-list{
 	/*margin-right: -50px;*/
-	top:50px;
-	left: -160px;
+	top:55px;
+	left: -190px;
 }
 #regions_div{
 	margin-left: auto;
