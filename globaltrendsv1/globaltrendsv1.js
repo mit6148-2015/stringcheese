@@ -5,6 +5,7 @@ if (Meteor.isClient) {
 }
 
 if (Meteor.isServer) {
+
   var Countries = new Mongo.Collection("countries");
   Countries.insert({country: "Italy", id: "23424853"});
   Countries.insert({country: "United States", id: "23424977"});
@@ -25,6 +26,9 @@ if (Meteor.isServer) {
   // for(var i =0; i<Countries.count; i++){
   //   Countries[i].insert({hashtag: hash[i]}); //have some other array that contains the hashtag for a country
   // }
+
+
+	WOEID = new Mongo.Collection("WOEID");
 
 }
 Router.map(function(){
