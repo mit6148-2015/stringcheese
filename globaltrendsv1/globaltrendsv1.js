@@ -7,8 +7,10 @@ if (Meteor.isClient) {
 if (Meteor.isServer) {
 
 }
+
 Router.map(function(){
   this.route('map', {path: '/'} );
   this.route('selected', {path: '/selected'});
   this.route('local', {path: '/local'});
+  this.route('home', {path: '/test'} );
 });
