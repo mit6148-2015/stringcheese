@@ -5,7 +5,7 @@ if (Meteor.isClient) {
 }
 
 if (Meteor.isServer) {
-
+	WOEID = new Mongo.Collection("WOEID");
 }
 Router.map(function(){
   this.route('map', {path: '/'} );
