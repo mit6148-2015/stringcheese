@@ -12,3 +12,13 @@
     margin-right: auto;
     width: 100%;
 }
+
+
+#header{
+
+	background-color: red;
+}
+
+nav{
+	background-color: transparent;
+}
