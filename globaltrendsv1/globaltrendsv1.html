@@ -4,7 +4,7 @@
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
 	  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script type="text/javascript" src="instafeed.min.js"></script>
+  
 	  <script type="text/javascript">
 
     function drawMap() {
@@ -47,13 +47,13 @@
             message = 'nothing';
         }
         alert('You selected ' + message);
+      }
+    
+      google.visualization.events.addListener(chart, 'select', myClickHandler);
+    
+      chart.draw(data, options);
     }
-    
-    google.visualization.events.addListener(chart, 'select', myClickHandler);
-    
-    chart.draw(data, options);
-}
-google.load('visualization', '1', {packages: ['geochart'], callback: drawMap});
+    google.load('visualization', '1', {packages: ['geochart'], callback: drawMap});
      </script>
 </head>
 <!---------------------------------------------------------------------------------------------->
@@ -62,7 +62,7 @@ google.load('visualization', '1', {packages: ['geochart'], callback: drawMap});
         <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-          <a class="navbar-brand" href="{{pathFor 'map'}}">GlobalTrends</a>
+          <a class="navbar-brand" href="{{pathFor 'home'}}">GlobalTrends</a>
         </div>
           <!-- Search bar-->
             <form class="navbar-form navbar-left" role="search">
@@ -96,23 +96,28 @@ google.load('visualization', '1', {packages: ['geochart'], callback: drawMap});
  <div id="regions_div"></div> 
 </template>
 
-
+<template name="world">
+</template>
 <!---------------------------------------------------------------------------------------------->
 
 <template name="selected">
-
 </template>	
 <!---------------------------------------------------------------------------------------------->
 <template name="local">
-
 </template>	
 <!---------------------------------------------------------------------------------------------->
 
 <template name = "home">
-    <div id="header">
+  <div id ="startpage" class="container-fluid">
+    <div id="scroll" class ="container-fluid">
+      <div class ="first segment container-fluid">
+      </div>
+      <div class ="second segment container-fluid">
+      </div>
+      <div class ="third segment container-fluid">
+      </div>
+    </div>
+  </div>
 
-    </div>
-    <div>
-    </div>
     
 </template>
