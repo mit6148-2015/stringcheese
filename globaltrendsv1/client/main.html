@@ -5,9 +5,15 @@
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
 	  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
     
     <h1> what's trending today? </h1>
 	  <script type="text/javascript">
+
+    // <script type="text/javascript" src="/client/compatibility/instafeed.min.js">
+	  
+    // <!-- MAPPPPPP -->
+
 
     function drawMap() {
     var data = google.visualization.arrayToDataTable([
@@ -87,7 +93,7 @@
 
             <div id="login-screen" style="color:white">
               {{>loginButtons}}
-              {{>currentUser}}
+              <!-- {{>currentUser}} -->
             </div>
               <!-- {{#if currentUser}}
                 {{currentUser.profile.login}}
@@ -143,6 +149,7 @@
 
 <template name = "home">
   <div id ="startpage" class="container-fluid">
+
     <!-- <div class="nav pull-right">
       {{> user_info}}
     </div> -->
@@ -172,7 +179,17 @@
         <div class ="second segment container-fluid">
         </div>
       </div> <!-- div scroll end -->
-  </div> <!-- div startpage end --> 
+
+    <div id="scroll" class ="container-fluid">
+      <div class ="first segment container-fluid">
+      </div>
+      <div class ="second segment container-fluid">
+      </div>
+      <div class ="third segment container-fluid">
+      </div>
+    </div>
+  </div>
+
 </template>
 
 
@@ -201,14 +218,14 @@
   </ul>
 </template>
 
-<template name="currentUser">
+<!-- <template name="currentUser">
     {{#if currentUser}}
         <form>
             <input type="text" name="playerName">
             <input type="submit" value="Add Player">
         </form>
     {{/if}}
-</template>
+</template> -->
 
 
 
