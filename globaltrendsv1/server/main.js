@@ -63,6 +63,17 @@ Meteor.methods({
             console.log("Error in Meteor.bindEnvironment");
            }));
       });
-  } //connectTwitter
+  }, //connectTwitter
+  getHashtag: function (countryID) {
+    var temp = Countries.find({id: countryID}).fetch();
+    return JSON.stringify(temp[0].hashtag);
+  }
+
+    
 }); //Meteor.methods
+
+
+
+      
+   
 } //on server

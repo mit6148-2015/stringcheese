@@ -3,7 +3,10 @@ if (Meteor.isClient) {
   passwordSignupFields: "USERNAME_ONLY"
   });
 
-  // Meteor.call("connectTwitter",function(err, result){
-  //   console.log(result);
-  // });
+  Meteor.setInterval(function(){
+  	Meteor.call("connectTwitter",function(err, result){
+    console.log(result);
+    });
+},1200000);
+  
 } //on client

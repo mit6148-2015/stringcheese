@@ -12,16 +12,38 @@
 
     // <script type="text/javascript" src="/client/compatibility/instafeed.min.js">
 	  
-    // <!-- MAPPPPPP -->
+
+    
+    var countryIDList = ["23424853", "23424977", "23424775", "23424768", "23424856", "23424910", "23424936", "23424740", "23424900", "23424942", "23424748", "23424950", "23424829"];
+    var countryList = ['Italy', 'United States', 'Canada', 'Brazil', 'Japan', 'Norway', 'Russia', 'Algeria', 'Mexico', 'South Africa', 'Australia', 'Spain', 'Germany'];
+    var countryHashtag = [];
+
+    function getHashtagFromDB(){
+     setTimeout(createMap, 1000);
+    countryIDList.forEach(function(countryID){
+        Meteor.apply("getHashtag", [EJSON.parse(countryID)], [true], function(err, result){
+          console.log("Error: " + err);
+          console.log("Result: "+ result);
+          countryHashtag.push(result);
+        });  
+    });
+  }
+
+  getHashtagFromDB();
+
+
+    var mapInfo = [['Country', 'hashtag']];
+    function createMap(){
+      for(var i =0; i<countryList.length; i++){
+        console.log(countryHashtag[i]);
+        mapInfo.push([countryList[i], countryHashtag[i]]);
+      }
+      google.load('visualization', '1', {packages: ['geochart'], callback: drawMap});
+    }
 
 
     function drawMap() {
-    var data = google.visualization.arrayToDataTable([
-        ['Country', 'hashtag'],
-        ['Russia', '#lol'],
-        ['France', '#yolo'],
-        ['Spain', '#testing']
-    ]);
+    var data = google.visualization.arrayToDataTable(mapInfo);
     
     var options = {
         dataMode: 'regions',
@@ -61,7 +83,8 @@
     
       chart.draw(data, options);
     }
-    google.load('visualization', '1', {packages: ['geochart'], callback: drawMap});
+    
+
      </script>
 </head>
 <!---------------------------------------------------------------------------------------------->
@@ -113,6 +136,7 @@
 <!---------------------------------------------------------------------------------------------->
 
 <template name="map">
+
  
    <!-- <h1> see what's trending around the world </h1> -->
    <div id ="startpage" class="container-fluid">
@@ -132,6 +156,7 @@
       </div>
     </div> <!-- end scroll -->
   </div> <!--end startpage-->
+
 </template>
 
 <template name="world">
