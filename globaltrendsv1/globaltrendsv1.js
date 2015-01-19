@@ -39,3 +39,29 @@ Router.map(function(){
   this.route('local', {path: '/local'});
   this.route('home', {path: '/home'} );
 });
+
+
+// Template.user_loggedout.events({
+//   "click #login": function(e, tmpl) {
+//     Meteor.login(function (err) {
+//       if (err) {
+//         //err handling
+//       } else {
+//         alert("logging in...")
+//       }
+//     });
+//   }
+// });
+
+
+// Template.user_loggedin.events({
+//   "click #logout": function (e, tmpl) {
+//     Meteor.logout(function (err) {
+//       if (err) {
+//         //show err message
+//       } else {
+//         alert("you have successfully logged out")
+//       }
+//     })
+//   }
+// });
