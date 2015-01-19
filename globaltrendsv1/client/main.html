@@ -7,13 +7,8 @@
 	  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
     
-    <h1> what's trending today? </h1>
-	  <script type="text/javascript">
-
-    // <script type="text/javascript" src="/client/compatibility/instafeed.min.js">
-	  
-
     
+	  <script type="text/javascript">    
     var countryIDList = ["23424853", "23424977", "23424775", "23424768", "23424856", "23424910", "23424936", "23424740", "23424900", "23424942", "23424748", "23424950", "23424829"];
     var countryList = ['Italy', 'United States', 'Canada', 'Brazil', 'Japan', 'Norway', 'Russia', 'Algeria', 'Mexico', 'South Africa', 'Australia', 'Spain', 'Germany'];
     var countryHashtag = [];
@@ -82,10 +77,17 @@
       google.visualization.events.addListener(chart, 'select', myClickHandler);
     
       chart.draw(data, options);
-    }
-    
+    }</script>
 
-     </script>
+     <!-- instafeed -->
+     <script type="text/javascript">
+          var feed = new Instafeed({
+              get: 'tagged',
+              tagName: 'mit',
+              clientId: '356506ebf9c442bea6bd28d6a368ba9a'
+          });
+          feed.run();
+      </script>
 </head>
 <!---------------------------------------------------------------------------------------------->
 <body>
@@ -165,6 +167,7 @@
 
 <template name="selected">
   <h1 style="padding: 30px"> this should be the selected page </h1>
+  <div id="instafeed"></div>
 </template>	
 <!---------------------------------------------------------------------------------------------->
 <template name="local">

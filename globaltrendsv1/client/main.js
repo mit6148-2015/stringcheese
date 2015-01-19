@@ -7,6 +7,6 @@ if (Meteor.isClient) {
   	Meteor.call("connectTwitter",function(err, result){
     console.log(result);
     });
-},1200000);
+	},1200000);
   
 } //on client
