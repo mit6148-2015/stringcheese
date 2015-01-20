@@ -29,6 +29,10 @@
     
     window.location.assign("/country/" + country);
   };
+
+
+
+
 </script>
 
 </head>
@@ -63,11 +67,13 @@
             </div>
           </ul>
           <!-- the 3 view options -->
+          {{#if currentUser}}
           <ul class="nav navbar-nav navbar-right">
             <a href="{{pathFor 'map'}}"><button type="button" class="btn btn-info outline">World</button></a>
             <a href="{{pathFor 'selected'}}"><button type="button" class="btn btn-success outline">Selected</button></a>
             <a href="{{pathFor 'local'}}"><button type="button" class="btn btn-warning outline">Local</button></a>
           </ul>
+          {{/if}}
         </div><!-- /.navbar-collapse -->
     </nav>
 
@@ -186,7 +192,7 @@
   <div id="startpage">
   <div id="instafeed">
     <div id="titlebox">
-      <h1>Country: {{data}}</h1>
+      <h1>{{specificCountry}}</h1>
       <h2>Tag: {{specificHashtag}}</h2>
     </div>
   </div>

@@ -67,6 +67,13 @@ Meteor.methods({
   getHashtag: function (countryID) {
     var temp = Countries.find({id: countryID}).fetch();
     return JSON.stringify(temp[0].hashtag);
+  },
+    getHashtagName: function (countryName) {
+    var temp = Countries.find({name: countryName[0]}).fetch();
+    console.log("countryName: " + countryName);
+     console.log("countryName[0]: " + countryName[0]);
+     console.log(temp);
+    return JSON.stringify(temp[0].hashtag);
   }
 
     
