@@ -5,89 +5,9 @@
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
 	  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-
-    
-    
-	  <script type="text/javascript">    
-    var countryIDList = ["23424853", "23424977", "23424775", "23424768", "23424856", "23424910", "23424936", "23424740", "23424900", "23424942", "23424748", "23424950", "23424829"];
-    var countryList = ['Italy', 'United States', 'Canada', 'Brazil', 'Japan', 'Norway', 'Russia', 'Algeria', 'Mexico', 'South Africa', 'Australia', 'Spain', 'Germany'];
-    var countryHashtag = [];
-
-    function getHashtagFromDB(){
-     setTimeout(createMap, 1000);
-    countryIDList.forEach(function(countryID){
-        Meteor.apply("getHashtag", [EJSON.parse(countryID)], [true], function(err, result){
-          console.log("Error: " + err);
-          console.log("Result: "+ result);
-          countryHashtag.push(result);
-        });  
-    });
-  }
-
-  getHashtagFromDB();
-
-
-    var mapInfo = [['Country', 'hashtag']];
-    function createMap(){
-      for(var i =0; i<countryList.length; i++){
-        console.log(countryHashtag[i]);
-        mapInfo.push([countryList[i], countryHashtag[i]]);
-      }
-      google.load('visualization', '1', {packages: ['geochart'], callback: drawMap});
-    }
-
-
-    function drawMap() {
-    var data = google.visualization.arrayToDataTable(mapInfo);
-    
-    var options = {
-        dataMode: 'regions',
-        width: 834,
-        height: 650,
-        backgroundColor: '#D2F0F0', /* light blue */
-        keepAspectRatio: true,
-        width: $(window).width(),
-        datalessRegionColor: '#659D32' /* green */
-    };
-    
-    var container = document.getElementById('regions_div');
-    var chart = new google.visualization.GeoChart(container);
-    
-    // alerts
-    // tells you row and column
-    function myClickHandler(){
-        var selection = chart.getSelection();
-        var message = '';
-        for (var i = 0; i < selection.length; i++) {
-            var item = selection[i];
-            if (item.row != null && item.column != null) {
-                message += '{row:' + item.row + ',column:' + item.column + '}';
-            } else if (item.row != null) {
-                message += '{row:' + item.row + '}';
-            } else if (item.column != null) {
-                message += '{column:' + item.column + '}';
-            }
-        }
-        if (message == '') {
-            message = 'nothing';
-        }
-        alert('You selected ' + message);
-      }
-    
-      google.visualization.events.addListener(chart, 'select', myClickHandler);
-    
-      chart.draw(data, options);
-    }</script>
-
-     <!-- instafeed -->
-     <script type="text/javascript">
-          var feed = new Instafeed({
-              get: 'tagged',
-              tagName: 'mit',
-              clientId: '356506ebf9c442bea6bd28d6a368ba9a'
-          });
-          feed.run();
-      </script>
+    <script type="text/javascript" src="/compatibility/geomap.js"></script>
+    <script type="text/javascript" src="/compatibility/instafeed.min.js"></script>
+    <script type="text/javascript" src="/compatibility/instag.js"></script>
 </head>
 <!---------------------------------------------------------------------------------------------->
 <body>
@@ -95,7 +15,7 @@
         <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-          <a class="navbar-brand" href="{{pathFor 'home'}}" style="color:white">GlobalTrends</a>
+          <a class="navbar-brand" href="{{pathFor 'home'}}" style="color:blue font:bold">GlobalTrends</a>
         </div>
           <!-- Search bar-->
             <form class="navbar-form navbar-left" role="search">
@@ -111,24 +31,19 @@
           <!-- right side of nav bar -->
           <!-- the login button -->
           <ul class ="nav navbar-nav navbar-right">
-            
-
-            <a class="login-link-text" id="login-sign-in-link">
-              <button type="button" class="btn btn-primary">Login?</button></a>
+            <!-- <a class="login-link-text" id="login-sign-in-link">
+              <button type="button" class="btn btn-primary">Login?</button>
+            </a> -->
 
             <div id="login-screen" style="color:white">
               {{>loginButtons}}
-              <!-- {{>currentUser}} -->
             </div>
-              <!-- {{#if currentUser}}
-                {{currentUser.profile.login}}
-              {{/if}} -->
           </ul>
           <!-- the 3 view options -->
           <ul class="nav navbar-nav navbar-right">
-            <a href="{{pathFor 'map'}}"><button type="button" class="btn btn-warning">World</button></a>
-            <a href="{{pathFor 'selected'}}"><button type="button" class="btn btn-info">Selected</button></a>
-            <a href="{{pathFor 'local'}}"><button type="button" class="btn btn-success">Local</button></a>
+            <a href="{{pathFor 'map'}}"><button type="button" class="btn btn-info outline">World</button></a>
+            <a href="{{pathFor 'selected'}}"><button type="button" class="btn btn-success outline">Selected</button></a>
+            <a href="{{pathFor 'local'}}"><button type="button" class="btn btn-warning outline">Local</button></a>
           </ul>
         </div><!-- /.navbar-collapse -->
     </nav>
@@ -166,8 +81,14 @@
 <!---------------------------------------------------------------------------------------------->
 
 <template name="selected">
-  <h1 style="padding: 30px"> this should be the selected page </h1>
-  <div id="instafeed"></div>
+  <div id="startpage">
+  <div id="instafeed">
+    <div id="titlebox">
+      <h1>TAG: MIT</h1>
+      <div>teehee</div>
+    </div>
+  </div>
+  </div>
 </template>	
 <!---------------------------------------------------------------------------------------------->
 <template name="local">
