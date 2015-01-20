@@ -1,7 +1,12 @@
 Router.route('/country/:country', function() {
 	var country = this.params.country;
 	console.log(this.params, country);
-	this.render('countryTemplate', {specificCountry: country});
+	  this.render('countryTemplate', {
+   	 	 data: function () {
+     	 	return country;
+   	 	 }
+  	  });
+	
 });
 
 Router.map(function(){

@@ -6,7 +6,7 @@ var feed = new Instafeed({
   // get:'location',
   // locationId: '';
   sortBy: 'most-recent',
-  limit: 5, //shows 5 images at most, for now
-  template: '<article><div id="instagram_container"><a href="{{link}}"><img id="instaimage" src="{{image}}" /></a><div id="instabox">{{likes}}{{location}}</div></div></article>',
+  limit: 20, //shows 5 images at most, for now
+  template: '<article><div id="instagram_container"><a href="{{link}}"><img id="instaimage" src="{{image}}" /></a><div id="instabox">{{model.created_time}}</div></div></article>',
 });
 feed.run();

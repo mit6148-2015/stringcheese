@@ -102,14 +102,7 @@
 <!---------------------------------------------------------------------------------------------->
 
 <template name="selected">
-  <div id="startpage">
-  <div id="instafeed">
-    <div id="titlebox">
-      <h1>TAG: MIT</h1>
-      <div>teehee</div>
-    </div>
-  </div>
-  </div>
+
 </template>	
 
 <!---------------------------------------------------------------------------------------------->
@@ -190,9 +183,14 @@
 </template>
 
 <template name="countryTemplate">
-<h1>{{specificCountry}}</h1>
-<h2>{{specificHashtag}}</h2>
-
+  <div id="startpage">
+  <div id="instafeed">
+    <div id="titlebox">
+      <h1>Country: {{data}}</h1>
+      <h2>Tag: {{specificHashtag}}</h2>
+    </div>
+  </div>
+  </div>
 </template>
 
 <!--<script type="text/javascript">
