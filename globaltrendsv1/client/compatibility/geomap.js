@@ -1,15 +1,3 @@
-$(document).ready(function(){
-  $("#searchText").keypress(function(e) {
-
-    if(e.which == 13) {
-      e.preventDefault();
-      e.stopImmediatePropagation();
-      getCountrySearchInput();
-      return false; //don't type letter
-    }
-    return true; //letting any letter pass
-  });
-});
 
 var countryIDList = ["23424853", "23424977", "23424775", "23424768", "23424856", "23424910", "23424936", "23424740", "23424900", "23424942", "23424748", "23424950", "23424829"];
 var countryList = ['Italy', 'United States', 'Canada', 'Brazil', 'Japan', 'Norway', 'Russia', 'Algeria', 'Mexico', 'South Africa', 'Australia', 'Spain', 'Germany'];
@@ -86,10 +74,5 @@ function drawMap() {
   }
     
 
-  function getCountrySearchInput(){
-    var country = $('#searchText').val();
-    console.log(country);
-    
-    window.location.assign("/country/" + country);
-  };
+  
 }

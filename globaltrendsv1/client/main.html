@@ -8,6 +8,29 @@
     <script type="text/javascript" src="/compatibility/geomap.js"></script>
     <script type="text/javascript" src="/compatibility/instafeed.min.js"></script>
     <script type="text/javascript" src="/compatibility/instag.js"></script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#searchText").keypress(function(e) {
+
+      if(e.which == 13) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        getCountrySearchInput();
+        return false; //don't type letter
+      }
+      return true; //letting any letter pass
+    });
+  });
+
+  function getCountrySearchInput(){
+    var country = $('#searchText').val();
+    console.log(country);
+    
+    window.location.assign("/country/" + country);
+  };
+</script>
+
 </head>
 
 <body>
@@ -15,7 +38,7 @@
         <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-          <a class="navbar-brand" href="{{pathFor 'home'}}" style="color:blue font:bold">GlobalTrends</a>
+          <a class="navbar-brand" href="{{pathFor 'map'}}" style="color:blue font:bold">GlobalTrends</a>
         </div>
           <!-- Search bar-->
             <form class="navbar-form navbar-left" role="search">
@@ -53,8 +76,6 @@
 <!---------------------------------------------------------------------------------------------->
 
 <template name="map">
-
- 
    <!-- <h1> see what's trending around the world </h1> -->
    <div id ="startpage" class="container-fluid">
     
