@@ -37,6 +37,10 @@
     
     window.location.assign("/country/" + country);
   };
+
+
+
+
 </script>
 
 </head>
@@ -93,6 +97,7 @@
             </div>
           </ul>
           <!-- the 3 view options -->
+          {{#if currentUser}}
           <ul class="nav navbar-nav navbar-right">
             <a href="{{pathFor 'map'}}" style="font-weight:lighter">
               <button type="button" class="btn btn-info outline">World</button></a>
@@ -101,6 +106,7 @@
             <a href="{{pathFor 'local'}}" style="font-weight:lighter">
               <button type="button" class="btn btn-warning outline">Local</button></a>
           </ul>
+          {{/if}}
         </div><!-- /.navbar-collapse -->
     </nav>
 
@@ -115,7 +121,9 @@
    <!-- <h1> see what's trending around the world </h1> -->
    <div id ="startpage" class="container-fluid">
     
-      <div id="map-blurb"><h1 style="padding: 70px 0px 0px 70px"> what's trending today? blah </h1></div>
+      <div id="map-blurb"><h1 style="padding: 70px 0px 0px 70px"> what's trending today? </h1>
+      <h3>Search for a country ('Italy', 'United States', 'Canada', 'Brazil', 'Japan', 'Norway', 'Russia', 'Algeria', 'Mexico', 'South Africa', 'Australia', 'Spain', 'Germany' ) or click on a country below</h3>
+      </div>
       <div id="scroll" class ="container-fluid">
       
       <div class ="first segment container-fluid">
@@ -222,7 +230,7 @@
   <div id="startpage1">
   <div id="instafeed">
     <div id="titlebox">
-      <h1>Country: {{data}}</h1>
+      <h1>{{specificCountry}}</h1>
       <h2>Tag: {{specificHashtag}}</h2>
     </div>
   </div>

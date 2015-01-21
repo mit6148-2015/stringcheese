@@ -1,6 +1,31 @@
 if (Meteor.isServer) {
 
+Meteor.startup(function(){
+  if(Countries.find().count() === 0){
+  Countries.insert({name: "Italy", id: 23424853, hashtag: null});
+  Countries.insert({name: "United States", id: 23424977, hashtag: null}); 
+  Countries.insert({name: "Canada", id: 23424775, hashtag: null});
+  Countries.insert({name: "Brazil", id: 23424768, hashtag: null}); 
+  Countries.insert({name: "Japan", id: 23424856, hashtag: null}); 
+  Countries.insert({name: "Norway", id: 23424910, hashtag: null}); 
+  Countries.insert({name: "Russia", id: 23424936, hashtag: null});
+  Countries.insert({name: "Algeria", id: 23424740, hashtag: null}); 
+  Countries.insert({name: "Mexico", id: 23424900, hashtag: null});
+  Countries.insert({name: "South Africa", id: 23424942, hashtag: null});
+  Countries.insert({name: "Australia", id: 23424748, hashtag: null});
+  Countries.insert({name: "Spain", id: 23424950, hashtag: null});
+  Countries.insert({name: "Germany", id: 23424829, hashtag: null});
+
+  Meteor.call("connectTwitter",function(err, result){
+    console.log(result);
+  });
+  }
+});
+
+
+
  var countryIDList = [23424853, 23424977, 23424775, 23424768, 23424856, 23424910, 23424936, 23424740, 23424900, 23424942, 23424748, 23424950, 23424829];
+
 
  Countries = new Mongo.Collection("countries");
  //  Countries.insert({name: "Italy", id: 23424853, hashtag: null});
@@ -67,13 +92,16 @@ Meteor.methods({
   getHashtag: function (countryID) {
     var temp = Countries.find({id: countryID}).fetch();
     return JSON.stringify(temp[0].hashtag);
+  },
+    getHashtagName: function (countryName) {
+    var temp = Countries.find({name: countryName[0]}).fetch();
+    console.log("countryName: " + countryName);
+     console.log("countryName[0]: " + countryName[0]);
+     console.log(temp);
+    return JSON.stringify(temp[0].hashtag);
   }
 
     
 }); //Meteor.methods
-
-
-
-      
    
 } //on server

@@ -2,7 +2,7 @@ var feed = new Instafeed({
   clientId: '356506ebf9c442bea6bd28d6a368ba9a',
   //tags
   get: 'tagged',
-  tagName: 'rebecca',
+  tagName: 'iap',
   // get:'location',
   // locationId: '';
   sortBy: 'most-recent',
