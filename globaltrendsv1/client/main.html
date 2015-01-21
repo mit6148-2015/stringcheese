@@ -9,6 +9,14 @@
     <script type="text/javascript" src="/compatibility/instafeed.min.js"></script>
     <script type="text/javascript" src="/compatibility/instag.js"></script>
 
+    <link rel="icon" href="../../favicon.ico">
+    <!-- Bootstrap core CSS -->
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="signin.css" rel="stylesheet">
+
+
 <script type="text/javascript">
   $(document).ready(function(){
     $("#searchText").keypress(function(e) {
@@ -34,11 +42,33 @@
 </head>
 
 <body>
+  <!--THIS IS THE SIGN IN SHIT-->
+  <div class="container">
+    <div class="signin">
+      <form class="form-signin">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+
+      </div>
+    </div> <!-- /container -->
+<!-- END SIGN IN SHIT -->
+
+
     <nav class="navbar navbar-fixed-top">
         <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-          <a class="navbar-brand" href="{{pathFor 'map'}}" style="color:blue font:bold">GlobalTrends</a>
+          <a class="navbar-brand" href="{{pathFor 'map'}}" id="globaltrends">GlobalTrends</a>
         </div>
           <!-- Search bar-->
             <form class="navbar-form navbar-left" role="search">
@@ -64,12 +94,18 @@
           </ul>
           <!-- the 3 view options -->
           <ul class="nav navbar-nav navbar-right">
-            <a href="{{pathFor 'map'}}"><button type="button" class="btn btn-info outline">World</button></a>
-            <a href="{{pathFor 'selected'}}"><button type="button" class="btn btn-success outline">Selected</button></a>
-            <a href="{{pathFor 'local'}}"><button type="button" class="btn btn-warning outline">Local</button></a>
+            <a href="{{pathFor 'map'}}" style="font-weight:lighter">
+              <button type="button" class="btn btn-info outline">World</button></a>
+            <a href="{{pathFor 'selected'}}" style="font-weight:lighter">
+              <button type="button" class="btn btn-success outline">Selected</button></a>
+            <a href="{{pathFor 'local'}}" style="font-weight:lighter">
+              <button type="button" class="btn btn-warning outline">Local</button></a>
           </ul>
         </div><!-- /.navbar-collapse -->
     </nav>
+
+
+
 
 
 </body>
@@ -183,7 +219,7 @@
 </template>
 
 <template name="countryTemplate">
-  <div id="startpage">
+  <div id="startpage1">
   <div id="instafeed">
     <div id="titlebox">
       <h1>Country: {{data}}</h1>

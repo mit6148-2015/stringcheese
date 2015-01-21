@@ -34,7 +34,7 @@ function drawMap() {
       width: 834,
       height: 650,
       dataMode: 'regions',
-      backgroundColor: '#129793', /* light blue */
+      backgroundColor: '#F4D3B8',/*'#A4F3F3', /* light blue */
       keepAspectRatio: true,
       width: $(window).width(),
       datalessRegionColor: '#408640' /* green */
