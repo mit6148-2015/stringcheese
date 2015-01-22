@@ -44,13 +44,24 @@ Meteor.startup(function(){
  //  Countries.insert({name: "Spain", id: 23424950, hashtag: null});
  //  Countries.insert({name: "Germany", id: 23424829, hashtag: null});
 
-  Usernames = new Mongo.Collection("usernames");
-    listUsers = Meteor.users.find().fetch();
-    for(i=0; i<listUsers.length; i++) {
-      Usernames.insert({userId: "Meteor.userId()"});
-      console.log(listUsers);
-      listUsers.splice(i, 1);
-    };
+  // Usernames = new Mongo.Collection("usernames");
+  //   listUsers = Meteor.users.find().fetch();
+  //   for(i=0; i<listUsers.length; i++) {
+  //     Usernames.insert({userId: "Meteor.userId()"});
+  //     //console.log(listUsers);
+  //     //listUsers.splice(i, 1);
+  //   };
+
+    Usernames = new Mongo.Collection("usernames");
+    Accounts.onCreateUser(function(options, user) {
+
+    if (options.profile) {
+      user.profile = options.profile;
+      Usernames.insert(Meteor.user().username);
+      console.log(Meteor.user().username);
+      return user;
+      }
+    });
 
 
 Meteor.methods({
@@ -96,9 +107,12 @@ Meteor.methods({
     getHashtagName: function (countryName) {
     var temp = Countries.find({name: countryName}).fetch();
     console.log("countryName: " + countryName);
-     console.log("countryName[0]: " + countryName[0]);
-     console.log(temp);
+    console.log("hashtag: "+ temp[0].hashtag);
     return JSON.stringify(temp[0].hashtag);
+  },
+  getUserCountries: function(userName){
+    var user = Usernames.find({username: userName}).fetch();
+
   }
 
     

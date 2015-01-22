@@ -5,9 +5,6 @@
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
 	  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script type="text/javascript" src="/compatibility/geomap.js"></script>
-    <script type="text/javascript" src="/compatibility/instafeed.min.js"></script>
-    <script type="text/javascript" src="/compatibility/instag.js"></script>
 
 <script type="text/javascript">
   $(document).ready(function(){
@@ -31,7 +28,13 @@
   };
 
 
+function saveCountry(){
+  //if country is not already saved in their db - add to db and change button to say "remove country"
+var currentUser = Meteor.user().username;
 
+
+  //if country is saved in their db - remove from db and change button to say "add country"
+}
 
 </script>
 
@@ -190,12 +193,13 @@
   </ul>
 </template>
 
-<template name="countryTemplate">
+<template name="countryTemplate" id="countryTemplateID">
   <div id="startpage">
   <div id="instafeed">
     <div id="titlebox">
       <h1>{{specificCountry}}</h1>
-      <h2>Tag: hi? {{specificHashtag}}</h2>
+      <h2 id="countryHashtag"></h2>
+      <button type="button" onclick="saveCountry()">Save Country</button>
     </div>
   </div>
   </div>
