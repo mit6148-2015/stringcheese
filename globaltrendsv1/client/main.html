@@ -5,9 +5,6 @@
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
 	  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script type="text/javascript" src="/compatibility/geomap.js"></script>
-    <script type="text/javascript" src="/compatibility/instafeed.min.js"></script>
-    <script type="text/javascript" src="/compatibility/instag.js"></script>
 
     <link rel="icon" href="../../favicon.ico">
     <!-- Bootstrap core CSS -->
@@ -43,7 +40,13 @@
   }
 
 
+function saveCountry(){
+  //if country is not already saved in their db - add to db and change button to say "remove country"
+var currentUser = Meteor.user().username;
 
+
+  //if country is saved in their db - remove from db and change button to say "add country"
+}
 
 </script>
 
@@ -107,6 +110,7 @@
 
 
 {{>login}}
+{{>register}}
 <!-- testing -->
 
  
@@ -215,12 +219,15 @@
   </ul>
 </template>
 
-<template name="countryTemplate">
-  <div id="startpage1">
+
+
+<template name="countryTemplate" id="countryTemplateID">
+  <div id="startpage">
   <div id="instafeed">
     <div id="titlebox">
       <h1>{{specificCountry}}</h1>
-      <h2>Tag: {{specificHashtag}}</h2>
+      <h2 id="countryHashtag"></h2>
+      <button type="button" onclick="saveCountry()">Save Country</button>
     </div>
   </div>
   </div>
@@ -256,6 +263,7 @@
 <template name="login">
 
    <!--THIS IS THE SIGN IN SHIT-->
+   <div class="login_shit">
     <div class="container">
       <div class="input-group input-group-lg">
       <form id="form-signin">
@@ -271,15 +279,23 @@
             </label>
             </div>
             <button class="btn btn-lg btn-info outline" type="submit" id="signInButton">Sign in</button>
-
-
-
-
       </form>
     </div>
     </div> <!-- /container -->
+</div>
 <!-- END SIGN IN SHIT -->
 
+</template>
+
+<template name="register">
+
+    <form id="register-form" action="action">
+      <div>
+       <input type="email" id="account-email" />
+       <input type="password" id="account-password" />
+       <input type="submit" id="create-account" value="Create an Account" />
+     </div>
+   </form>
 </template>
 
  
