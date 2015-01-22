@@ -48,9 +48,12 @@ Meteor.startup(function(){
     listUsers = Meteor.users.find().fetch();
     for(i=0; i<listUsers.length; i++) {
       Usernames.insert({userId: "Meteor.userId()"});
-      console.log(listUsers);
-      listUsers.splice(i, 1);
-    };
+      //console.log(listUsers);
+      //listUsers.splice(i, 1);
+  };
+
+
+
 
 
 Meteor.methods({
