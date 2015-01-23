@@ -4,14 +4,14 @@ Template.map.rendered = function(){
   var countryHashtag = [];
 
   function getHashtagFromDB(){
-  setTimeout(createMap, 1000);
-  countryIDList.forEach(function(countryID){
-      Meteor.apply("getHashtag", [EJSON.parse(countryID)], [true], function(err, result){
-        // console.log("Error: " + err);
-        // console.log("Result: "+ result);
-        countryHashtag.push(result);
-      });  
-  });
+    setTimeout(createMap, 1000);
+    countryIDList.forEach(function(countryID){
+        Meteor.apply("getHashtag", [EJSON.parse(countryID)], [true], function(err, result){
+          // console.log("Error: " + err);
+          // console.log("Result: "+ result);
+          countryHashtag.push(result);
+        });  
+    });
   }
 
   getHashtagFromDB();

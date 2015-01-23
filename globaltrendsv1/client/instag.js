@@ -1,6 +1,4 @@
 Template.countryTemplate.rendered = function(){
-
-
   var theTag;
   var countries = "Russia";
 

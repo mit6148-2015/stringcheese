@@ -111,12 +111,15 @@ Meteor.methods({
     console.log("hashtag: "+ temp[0].hashtag);
     return JSON.stringify(temp[0].hashtag);
   },
-  getUserCountries: function(userName){
-    var user = Usernames.find({username: userName}).fetch();
-
+  getAllCountries: function(){
+    var temp=[];
+    for(var i =0; i < 13; i++){
+      temp.push(Countries.find().fetch()[i].name);
+    }
+    console.log("ARRAY OF COUNTRIES: " + temp);
+    return JSON.stringify(temp);
+    // return Countries.count();
   }
-
-    
 }); //Meteor.methods
    
 } //on server
