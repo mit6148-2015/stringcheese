@@ -52,16 +52,16 @@ Meteor.startup(function(){
   //     //listUsers.splice(i, 1);
   //   };
 
-    Usernames = new Mongo.Collection("usernames");
-    Accounts.onCreateUser(function(options, user) {
+    //Usernames = new Mongo.Collection("usernames");
+    // Accounts.onCreateUser(function(options, user) {
 
-    if (options.profile) {
-      user.profile = options.profile;
-      Usernames.insert(Meteor.user().username);
-      console.log(Meteor.user().username);
-      return user;
-      }
-    });
+    // if (options.profile) {
+    //   user.profile = options.profile;
+    //   Usernames.insert(Meteor.user().username);
+    //   console.log(Meteor.user().username);
+    //   return user;
+    //   }
+    // });
 
 
 Meteor.methods({
@@ -77,6 +77,11 @@ Meteor.methods({
         consumer_secret: 'onFHlgJ5Om6jVaGd1Bwdg234X8smxD2OQTDJg2RIjU7OAmGIfD',
         access_token: '2981621259-gQLus7QkNolFxs6HtedqPEDv8wopAGwgTREwAsN',
         access_token_secret: 'cGqjr7bfbkQ5exMw0X0OG68wkeKhMzhibSoZa7EEphoCP'
+
+       // consumer_key: 'V6pV7WkzMJDPT2smxEAJGJQXM'
+       // consumer_secret: 'AEu10XYgK3RftfRvDGdwVnlbfxEuAgOWewcqeCt4uFZKSbyakQ'
+       // access_token: '2966838142-M97BaLp0xIIeg1oNoxuuDGWm9k3N6J5xyOZh0Em'
+       // access_token_secret: 'AifnQUfQRVQmfKluUFCim36iQDh28uQgB3St7HlBidGx4'
     });
 
       countryIDList.forEach(function(countryID) {
@@ -110,11 +115,47 @@ Meteor.methods({
     console.log("hashtag: "+ temp[0].hashtag);
     return JSON.stringify(temp[0].hashtag);
   },
-  getUserCountries: function(userName){
-    var user = Usernames.find({username: userName}).fetch();
+  // getUserCountries: function(userName){
+  //   var user = Usernames.find({username: userName}).fetch();
 
+  // },
+  insertCountryProperty: function(country){        
+    console.log("got to insertCountryProperty");
+    Meteor.users.update({username: Meteor.user().username}, {$set: {countries: [country]}}, function(err, doc){
+      if (err) {
+        console.log(err);
+      }else {
+        console.log("updated the country list");
+      }
+    });
+  },
+  getCountries: function(){
+    var countries = Meteor.users.find({username: "testing"})[0].countries;
+    console.log("countries: "+ countries);
+  //  var countries = Meteor.users.find({username: Meteor.user().username}).fetch().countries;
+    
+    return JSON.stringify(countries);
+  },
+  deleteCountry: function(countryArray){
+    Meteor.users.find({username: Meteor.user().username}, {$set: {countries: countryArray}}, function(err, doc){
+      if(err){
+        console.log(err);
+      }else{
+        console.log("Deleted country from array");
+      }
+    });
+  },
+  insertCountry: function(countryToInsert){
+    var countryArray = Meteor.users.find({username: Meteor.user().username}).fetch().countries;
+    countryArray.push(countryToInsert);
+    Meteor.users.find({username: Meteor.user().username}, {$set: {countries: countryArray}}, function(err, doc){
+      if(err){
+        console.log(err);
+      }else{
+        console.log("Added country to countryArray");
+      }
+    });
   }
-
     
 }); //Meteor.methods
    

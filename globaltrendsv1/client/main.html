@@ -29,8 +29,53 @@
 
 
 function saveCountry(){
+  console.log("in saveCountry");
   //if country is not already saved in their db - add to db and change button to say "remove country"
-var currentUser = Meteor.user().username;
+  var currentCountry = $("#countryName").text();
+  var currentUser = Meteor.user().username;
+
+// if(Meteor.users.find({username: "testing"})[0].countries===undefined){
+//   console.log("trying to add the property...");
+//       Meteor.apply("insertCountryProperty", [currentCountry], [true], function(err, result){
+//        console.log("Error: " + err);
+//        console.log("Result: "+ result);
+//     });  
+// }else{ //its not undefined so we need to check if the country has already been added
+  console.log("before Meteor.apply");
+  Meteor.apply("getCountries", function(err, result){
+    console.log("in Meteor.apply");
+    var countries = JSON.parse(result);
+    if(countries === undefined){
+      console.log("trying to add the property...");
+      Meteor.apply("insertCountryProperty", [currentCountry], [true], function(err, result){
+        console.log("Error: " + err);
+        console.log("Result: "+ result);
+      });
+    }else{
+      console.log("countries was not undefined");
+      var foundcountry = false;
+      for(var i =0; i<countries.length; i++){
+        if(countries[i]===currentCountry){
+          countries.splice(i,1);
+          Meteor.apply("deleteCountry", [JSON.stringify(countries)], [true], function(err, result){
+            console.log("Error in deleteCountry: "+ err);
+            console.log("Result of deleteCountry: "+ result);
+          });
+          foundcountry = true;
+          $("#saveCountryButton").html("This changed!--Removed Country");
+        }
+      }
+      if(!foundcountry){
+        Meteor.apply("insertCountry", [currentCountry], [true], function(err, result){
+          console.log("Error in insertCountryProperty: " +err);
+          console.log("Result of insertCountryProperty: " +result);
+        });
+        $("#saveCountryButton").html("This changed!--Added Country");
+      }
+    }
+
+  });
+
 
 
   //if country is saved in their db - remove from db and change button to say "add country"
@@ -197,9 +242,9 @@ var currentUser = Meteor.user().username;
   <div id="startpage">
   <div id="instafeed">
     <div id="titlebox">
-      <h1>{{specificCountry}}</h1>
+      <h1 id="countryName">{{specificCountry}}</h1>
       <h2 id="countryHashtag"></h2>
-      <button type="button" onclick="saveCountry()">Save Country</button>
+      <button type="button" onclick="saveCountry()" id="saveCountryButton">Save Country</button>
     </div>
   </div>
   </div>
