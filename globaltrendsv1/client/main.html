@@ -135,12 +135,12 @@ function saveCountry(){
               <button type="button" class="btn btn-warning outline">Local</button></a>
               <!--this is the login dropdown-->
             <div class="btn-group">
-              <button type="button" class="btn btn-info dropdown-toggle outline" data-toggle="dropdown" aria-expanded="false">
+              <button type="button" class="btn btn-info outline dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="loginButton">
                 login <span class="caret"></span>
               </button>
               <ul class="dropdown-menu" role="menu">
-                <input type="text" class="form-control" placeholder="Email address" id="signInEmail">
-              <input type="text" class="form-control" placeholder="Password" id="signInPassword">
+                <input type="text" class="form-control email" placeholder="Email address" id="signInEmail">
+              <input type="text" class="form-control password" placeholder="Password" id="signInPassword">
               </ul>
             </div>
             <!--end login dropdown-->
@@ -155,11 +155,10 @@ function saveCountry(){
 <template name="map">
    <div id ="startpage" class="container-fluid">
     
-      <div id="map-blurb"><h1 style="padding: 70px 0px 0px 70px; color:white"> what's trending today? </h1>
+      <div id="map-blurb"><h1 style="padding: 70px 0px 0px 70px; font-weight:lighter; color:white; letter-spacing: 1px"> what's trending today? </h1>
       </div>
 
-<!-- 
-{{>login}} -->
+{{>login}} 
 <!-- {{>register}} -->
 {{>main}}
 <!-- testing -->
@@ -168,6 +167,9 @@ function saveCountry(){
       <div id="scroll" class ="container-fluid">
       
       <div class ="first segment container-fluid">
+        <div id="map-blurb"><h1 style="padding: 30px 0px 0px 30px; font-weight:lighter; color: #A75050; letter-spacing: 1px"> what's trending today? </h1>
+      </div>
+
         <div id="regions_div"></div> 
       </div> <!--end first segment container-fluid -->
 
@@ -233,24 +235,25 @@ function saveCountry(){
 
 <!---------------------------------------------------->
 
-<!-- <template name="login">
+<!-- this is actually to sign up -->
+<template name="login">
    <div class="login_shit">
     <div class="container">
       <div class="input-group input-group-lg">
-      <form id="form-signin">
-        <h2 class="form-signin-heading">Please sign in</h2>
+      <form id="form-signin" style="margin: 150px 0px 0px 450px">
+        <h2 class="form-signin-heading" style="text-align:center; color:white; font-weight: lighter">gTrends</h2>
 
-            <div class="input-group input-group-sm">
-              <input type="text" class="form-control" placeholder="Email address" id="inputEmail">
-              <input type="text" class="form-control" placeholder="Password" id="inputPassword">
+            <div class="input-group input-group-sm" style="margin-bottom:20px">
+              <input type="text" class="form-control" placeholder="Email address" style="text-align:center;" id="inputEmail">
+              <input type="text" class="form-control" placeholder="Password" style="text-align:center" id="inputPassword">
             </div>
-            <button class="btn btn-lg btn-info outline" type="submit" id="signInButton">Sign in</button>
+            <button class="btn btn-lg btn-info outline" type="submit" id="signInButton" style="margin-left: 80px">Create Account</button>
       </form>
     </div>
     </div> 
 </div>
 
-</template> -->
+</template>
 
 <!-- <template name="register">
 
@@ -266,7 +269,7 @@ function saveCountry(){
 <!---------------------------------------------------->
 
 <template name="main">
-    {{> alert}}
+    <!-- {{> alert}} -->
     {{#unless resetPassword}}
         {{#unless currentUser}}
             {{#unless showForgotPassword}}

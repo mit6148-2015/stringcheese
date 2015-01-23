@@ -14,7 +14,7 @@ var feed = new Instafeed({
   //tags
   get: 'tagged',
 
-  tagName: getHashtagWithNoHashtag(),
+  tagName: 'iap',
 
   // get:'location',
   // locationId: '';
