@@ -95,9 +95,10 @@ nav{
 }
 
 .instabox{
-  display: block;
-  height: 20px;
+  height: 30px;
   background-color: blue;
+  display: inline-block;
+  
 }
 
  #instafeed {

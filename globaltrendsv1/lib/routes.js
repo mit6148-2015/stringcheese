@@ -5,18 +5,18 @@ Router.route('/country/:country', function() {
 		      console.log("Error: " + err);
 		      console.log("Result(Hashtag from Country): "+ result);
 		      $("#countryHashtag").html(result);		    
-	     });
+	});
 
 	this.render('countryTemplate', {
-    data: function () {
-      return {
-		specificCountry: function() {
-			console.log("country in specificCountry: "+ country);
-		  return country;
-		}
-	  }
-    }
-  });
+	    data: function () {
+	      return {
+			specificCountry: function() {
+				console.log("country in specificCountry: "+ country);
+			  return country;
+			}
+		  }
+	    }
+	});
 	
 });
 
