@@ -15,6 +15,7 @@ var feed = new Instafeed({
   get: 'tagged',
 
   tagName: getHashtagWithNoHashtag(),
+
   // get:'location',
   // locationId: '';
   sortBy: 'most-recent',

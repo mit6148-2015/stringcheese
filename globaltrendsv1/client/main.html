@@ -6,6 +6,14 @@
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
 	  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
+    <link rel="icon" href="../../favicon.ico">
+    <!-- Bootstrap core CSS -->
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="signin.css" rel="stylesheet">
+
+
 <script type="text/javascript">
   $(document).ready(function(){
     $("#searchText").keypress(function(e) {
@@ -26,6 +34,10 @@
     
     window.location.assign("/country/" + country);
   };
+
+  function getUserInfo() {
+    var username = $('')
+  }
 
 
 function saveCountry(){
@@ -86,11 +98,12 @@ function saveCountry(){
 </head>
 
 <body>
+
     <nav class="navbar navbar-fixed-top">
         <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-          <a class="navbar-brand" href="{{pathFor 'map'}}" style="color:blue font:bold">GlobalTrends</a>
+          <a class="navbar-brand" href="{{pathFor 'map'}}" id="globaltrends">GlobalTrends</a>
         </div>
           <!-- Search bar-->
             <form class="navbar-form navbar-left" role="search">
@@ -112,14 +125,18 @@ function saveCountry(){
 
             <div id="login-screen" style="color:white">
               {{>loginButtons}}
+
             </div>
           </ul>
           <!-- the 3 view options -->
           {{#if currentUser}}
           <ul class="nav navbar-nav navbar-right">
-            <a href="{{pathFor 'map'}}"><button type="button" class="btn btn-info outline">World</button></a>
-            <a href="{{pathFor 'selected'}}"><button type="button" class="btn btn-success outline">Selected</button></a>
-            <a href="{{pathFor 'local'}}"><button type="button" class="btn btn-warning outline">Local</button></a>
+            <a href="{{pathFor 'map'}}" style="font-weight:lighter">
+              <button type="button" class="btn btn-info outline">World</button></a>
+            <a href="{{pathFor 'selected'}}" style="font-weight:lighter">
+              <button type="button" class="btn btn-success outline">Selected</button></a>
+            <a href="{{pathFor 'local'}}" style="font-weight:lighter">
+              <button type="button" class="btn btn-warning outline">Local</button></a>
           </ul>
           {{/if}}
         </div><!-- /.navbar-collapse -->
@@ -133,9 +150,18 @@ function saveCountry(){
    <!-- <h1> see what's trending around the world </h1> -->
    <div id ="startpage" class="container-fluid">
     
-      <div id="map-blurb"><h1 style="padding: 70px 0px 0px 70px"> what's trending today? </h1>
-      <h3>Search for a country ('Italy', 'United States', 'Canada', 'Brazil', 'Japan', 'Norway', 'Russia', 'Algeria', 'Mexico', 'South Africa', 'Australia', 'Spain', 'Germany' ) or click on a country below</h3>
+      <div id="map-blurb"><h1 style="padding: 70px 0px 0px 70px; color:white"> what's trending today? </h1>
       </div>
+
+
+{{>login}}
+{{>register}}
+<!-- testing -->
+
+ 
+
+
+<!-- <h3 style="padding: 70px 0px 0px 70px; color:white; line-height: 150%">Search for a country ('Italy', 'United States', 'Canada', 'Brazil', 'Japan', 'Norway', 'Russia', 'Algeria', 'Mexico', 'South Africa', 'Australia', 'Spain', 'Germany' ) or click on a country below</h3> -->
       <div id="scroll" class ="container-fluid">
       
       <div class ="first segment container-fluid">
@@ -170,11 +196,12 @@ function saveCountry(){
 <template name = "home">
   <div id ="startpage" class="container-fluid">
 
+
     <!-- <div class="nav pull-right">
       {{> user_info}}
     </div> -->
   <!-- this is the sign-in -->
-        <div class="container">
+<!--     <div class="container">
           <div class="row">
               <div class="col-sm-6 col-md-4 col-md-offset-4">
                   <div class="account-wall">
@@ -190,7 +217,7 @@ function saveCountry(){
                   <a href="#" class="text-center new-account">Create an account</a>
                 </div>
             </div>
-        </div> <!-- end container -->
+        </div>  -->
 
       <div id="scroll" class ="container-fluid">
         <div class ="first segment container-fluid">
@@ -205,8 +232,7 @@ function saveCountry(){
       </div>
       <div class ="second segment container-fluid">
       </div>
-      <div class ="third segment container-fluid">
-      </div>
+
     </div>
   </div>
 
@@ -237,6 +263,8 @@ function saveCountry(){
     {{/if}}
   </ul>
 </template>
+
+
 
 <template name="countryTemplate" id="countryTemplateID">
   <div id="startpage">
@@ -277,6 +305,42 @@ function saveCountry(){
     {{/if}}
 </template> -->
 
+<template name="login">
 
+   <!--THIS IS THE SIGN IN SHIT-->
+   <div class="login_shit">
+    <div class="container">
+      <div class="input-group input-group-lg">
+      <form id="form-signin">
+        <h2 class="form-signin-heading">Please sign in</h2>
+
+            <div class="input-group input-group-sm">
+              <input type="text" class="form-control" placeholder="Email address" id="inputEmail">
+              <input type="text" class="form-control" placeholder="Password" id="inputPassword">
+            </div>
+            <div class="checkbox">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+            </div>
+            <button class="btn btn-lg btn-info outline" type="submit" id="signInButton">Sign in</button>
+      </form>
+    </div>
+    </div> <!-- /container -->
+</div>
+<!-- END SIGN IN SHIT -->
+
+</template>
+
+<template name="register">
+
+    <form id="register-form" action="action">
+      <div>
+       <input type="email" id="account-email" />
+       <input type="password" id="account-password" />
+       <input type="submit" id="create-account" value="Create an Account" />
+     </div>
+   </form>
+</template>
 
  

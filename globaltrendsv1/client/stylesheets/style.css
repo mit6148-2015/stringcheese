@@ -19,11 +19,17 @@ padding-bottom: 60px;
 nav{
 	background-color: transparent;
 }
+#globaltrends { 
+  padding-top: 20px;
+  color:white; 
+  font-weight:lighter;
+  letter-spacing: 1px;
+}
 
 /*NAV BAR BUTTONS*/
 .btn {
     border: 0 none;
-    font-weight: bolder;
+    /*font-weight: bolder;*/
     letter-spacing: 1px;
     text-transform: uppercase;
 }
@@ -36,6 +42,8 @@ nav{
     background: none;
     padding: 5px 12px;
     border: 2px solid;
+    margin-top: 10px;
+    text-transform: lowercase;
 }
 
 /*SCROLLY PAGE*/
@@ -46,9 +54,22 @@ nav{
 	position: absolute;
 	top: 0px;
 	left: 0px;
-	background-color: #E86850;
+	background-color:  #A75050;
+  background-attachment: scroll;
 	z-index: 1;
 	
+}
+#startpage1{
+  width: 100%;
+  height: 2s00%;
+  min-height: 700px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: #E86850;
+  background-attachment: scroll;
+  z-index: 1;
+  
 }
 .signin {
 	z-index: 3;
@@ -83,12 +104,12 @@ nav{
 }
 
 .first{
-	background-color: #129793; /*purple */ 
+	background-color: #F4D3B8; /*#A4F3F3; /*purple */ 
 }
 
 
 .second{
-	background-color: #129793; /*green */  
+	background-color: #306464; /*#129793; /*green */  
 }
 
 /*INSTAGRAM*/
@@ -178,6 +199,10 @@ nav{
   float: none;
 }
 
+#instafeed {
+  height: 200%;
+}
+
 /*#login-screen #login-dropdown-list {
   display: block;
 }*/
@@ -186,99 +211,74 @@ nav{
 
 /*#login-screen .dropdown-toggle {
   display: none !important;
-}
-
-.login-link-text #login-sign-in-link {
-	display: hidden !important;
 }*/
 
+#login-sign-in-link  {
+	color: white;
+  margin-top: 40px;
+  margin-left: 8px;
+  text-decoration: none;
+}
 
+#login-name-link {
+  color: white;
+  margin-top: 40px;
+  margin-left: 8px;
+  text-decoration: none;
+}
+
+.signin {
+  z-index: 5;
+}
 /**********************************************************/
 
 /*login: */
 
-/*.form-signin
-{
-    max-width: 330px;
-    padding: 15px;
-    margin: 0 auto;
+.form-signin {
+  max-width: 330px;
+  padding: 45px;
+  margin: 0 auto;
+  
 }
-.form-signin .form-signin-heading, .form-signin .checkbox
-{
-    margin-bottom: 10px;
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+  color: #5bc0de; /* info blue */
 }
-.form-signin .checkbox
-{
-    font-weight: normal;
+.form-signin .checkbox {
+  font-weight: normal;
 }
-.form-signin .form-control
-{
-    position: relative;
-    font-size: 16px;
-    height: auto;
-    padding: 10px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
 }
-.form-signin .form-control:focus
-{
-    z-index: 2;
+.form-signin .form-control:focus {
+  
 }
-.form-signin input[type="text"]
-{
-    margin-bottom: -1px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
 }
-.form-signin input[type="password"]
-{
-    margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
-.account-wall
-{
-	float: left;
-    margin-top: 20px;
-    padding: 40px 0px 20px 0px;
 
-
+#inputEmail {
+  margin-bottom: 20px;
 }
-.btn-primary {
-	color: #FFE3BA;
+
+.login_shit {
+  margin-left: auto;
+  margin-right: auto;
 }
-.login-title
-{
-    color: #555;
-    font-size: 18px;
-    font-weight: 400;
-    display: block;
-}
-.profile-img
-{
-    width: 170px;
-    height: 140px;
-    margin: 0 auto 10px;
-    display: block;
-/*    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;*/
-/*}
-
-.need-help
-{
-    margin-top: 10px;
-}
-.new-account
-{
-    display: block;
-    margin-top: 10px;
-}*/
-
-
-
-/* end login CSS */
 
 
 
