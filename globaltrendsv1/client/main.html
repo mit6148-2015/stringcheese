@@ -54,64 +54,26 @@
     });
   };
 
-  function getUserInfo() {
-    var username = $('')
-  }
-
-
 function saveCountry(){
   console.log("in saveCountry");
-  //if country is not already saved in their db - add to db and change button to say "remove country"
   var currentCountry = $("#countryName").text();
-  var currentUser = Meteor.user().username;
+  console.log("currentCountry: "+ currentCountry);
 
-// if(Meteor.users.find({username: "testing"})[0].countries===undefined){
-//   console.log("trying to add the property...");
-//       Meteor.apply("insertCountryProperty", [currentCountry], [true], function(err, result){
-//        console.log("Error: " + err);
-//        console.log("Result: "+ result);
-//     });  
-// }else{ //its not undefined so we need to check if the country has already been added
-  console.log("before Meteor.apply");
-  Meteor.apply("getCountries", function(err, result){
-    console.log("in Meteor.apply");
-    var countries = JSON.parse(result);
-    if(countries === undefined){
-      console.log("trying to add the property...");
-      Meteor.apply("insertCountryProperty", [currentCountry], [true], function(err, result){
-        console.log("Error: " + err);
-        console.log("Result: "+ result);
-      });
+  Meteor.apply("updateCountries", [currentCountry], function(err, result){
+    //do everything in server
+    if(err){
+    console.log("Error in updateCountries: "+err);
     }else{
-      console.log("countries was not undefined");
-      var foundcountry = false;
-      for(var i =0; i<countries.length; i++){
-        if(countries[i]===currentCountry){
-          countries.splice(i,1);
-          Meteor.apply("deleteCountry", [JSON.stringify(countries)], [true], function(err, result){
-            console.log("Error in deleteCountry: "+ err);
-            console.log("Result of deleteCountry: "+ result);
-          });
-          foundcountry = true;
-          $("#saveCountryButton").html("This changed!--Removed Country");
-        }
-      }
-      if(!foundcountry){
-        Meteor.apply("insertCountry", [currentCountry], [true], function(err, result){
-          console.log("Error in insertCountryProperty: " +err);
-          console.log("Result of insertCountryProperty: " +result);
-        });
-        $("#saveCountryButton").html("This changed!--Added Country");
+      console.log("Result of updateCountries: "+result);
+      if(result){ //if true than set button to "remove country"
+        $('#saveCountryButton').html("Remove Country");
+      }else{ //if false then set button to "save country"
+        $('#saveCountryButton').html("Save Country");
       }
     }
-
   });
 
-
-
-  //if country is saved in their db - remove from db and change button to say "add country"
 }
-
 </script>
 
 </head>
@@ -154,12 +116,12 @@ function saveCountry(){
               <button type="button" class="btn btn-warning outline">Local</button></a>
               <!--this is the login dropdown-->
             <div class="btn-group">
-              <button type="button" class="btn btn-info dropdown-toggle outline" data-toggle="dropdown" aria-expanded="false">
+              <button type="button" class="btn btn-info outline dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="loginButton">
                 login <span class="caret"></span>
               </button>
               <ul class="dropdown-menu" role="menu">
-                <input type="text" class="form-control" placeholder="Email address" id="signInEmail">
-              <input type="text" class="form-control" placeholder="Password" id="signInPassword">
+                <input type="text" class="form-control email" placeholder="Email address" id="signInEmail">
+              <input type="text" class="form-control password" placeholder="Password" id="signInPassword">
               </ul>
             </div>
             <!--end login dropdown-->
@@ -174,11 +136,10 @@ function saveCountry(){
 <template name="map">
    <div id ="startpage" class="container-fluid">
     
-      <div id="map-blurb"><h1 style="padding: 70px 0px 0px 70px; color:white"> what's trending today? </h1>
+      <div id="map-blurb"><h1 style="padding: 70px 0px 0px 70px; font-weight:lighter; color:white; letter-spacing: 1px"> what's trending today? </h1>
       </div>
 
-<!-- 
-{{>login}} -->
+{{>login}} 
 <!-- {{>register}} -->
 {{>main}}
 <!-- testing -->
@@ -187,6 +148,9 @@ function saveCountry(){
       <div id="scroll" class ="container-fluid">
       
       <div class ="first segment container-fluid">
+        <div id="map-blurb"><h1 style="padding: 30px 0px 0px 30px; font-weight:lighter; color: #A75050; letter-spacing: 1px"> what's trending today? </h1>
+      </div>
+
         <div id="regions_div"></div> 
       </div> <!--end first segment container-fluid -->
 
@@ -241,7 +205,7 @@ function saveCountry(){
     <div id="titlebox">
       <h1 id="countryName">{{specificCountry}}</h1>
       <h2 id="countryHashtag"></h2>
-      <button type="button" onclick="saveCountry()" id="saveCountryButton">Save Country</button>
+      <button type="button" onclick="saveCountry()" id="saveCountryButton">{{saveCountry}}</button>
     </div>
   </div>
   </div>
@@ -252,24 +216,25 @@ function saveCountry(){
 
 <!---------------------------------------------------->
 
-<!-- <template name="login">
+<!-- this is actually to sign up -->
+<template name="login">
    <div class="login_shit">
     <div class="container">
       <div class="input-group input-group-lg">
-      <form id="form-signin">
-        <h2 class="form-signin-heading">Please sign in</h2>
+      <form id="form-signin" style="margin: 150px 0px 0px 450px">
+        <h2 class="form-signin-heading" style="text-align:center; color:white; font-weight: lighter">gTrends</h2>
 
-            <div class="input-group input-group-sm">
-              <input type="text" class="form-control" placeholder="Email address" id="inputEmail">
-              <input type="text" class="form-control" placeholder="Password" id="inputPassword">
+            <div class="input-group input-group-sm" style="margin-bottom:20px">
+              <input type="text" class="form-control" placeholder="Email address" style="text-align:center;" id="inputEmail">
+              <input type="text" class="form-control" placeholder="Password" style="text-align:center" id="inputPassword">
             </div>
-            <button class="btn btn-lg btn-info outline" type="submit" id="signInButton">Sign in</button>
+            <button class="btn btn-lg btn-info outline" type="submit" id="signInButton" style="margin-left: 80px">Create Account</button>
       </form>
     </div>
     </div> 
 </div>
 
-</template> -->
+</template>
 
 <!-- <template name="register">
 
@@ -285,7 +250,7 @@ function saveCountry(){
 <!---------------------------------------------------->
 
 <template name="main">
-    {{> alert}}
+    <!-- {{> alert}} -->
     {{#unless resetPassword}}
         {{#unless currentUser}}
             {{#unless showForgotPassword}}

@@ -119,7 +119,83 @@ Meteor.methods({
     console.log("ARRAY OF COUNTRIES: " + temp);
     return JSON.stringify(temp);
     // return Countries.count();
-  }
+  },
+
+  updateCountries: function(country){
+    var removeCountry;
+    console.log("in updateCountries");
+    //var userAddress = Meteor.user().emails[0].address; //get email address of logged in user
+    var userID = Meteor.user()._id;
+    var num = Meteor.users.find({$and: [{_id : userID}, {countries: {$exists: true}}]}).count(); //check if countries exists
+
+   // console.log("element._transform: "+ element._transform);
+
+    if(num == 0){ //if it doesn't exist
+     // console.log("element._transform was null");
+      Meteor.users.update({_id : userID}, {$set: {countries: [country]}}, [true, true], function(err, doc){
+        if (err) {
+          console.log("Error in updating the country list: " + err);
+        }else {
+          console.log("updated the country list: "+ doc);
+        }
+      });
+      //change button to say "Remove Country"
+      removeCountry = true;
+    }else{ //if it does exist
+      //need to get the countrylist and check if the country has already been added
+      console.log("got here!");
+      var countryArray = Meteor.users.find({_id : userID}).fetch()[0].countries;
+      console.log("countryArray: "+ countryArray);
+      var countryRemoved = false;
+      for(var i = 0; i<countryArray.length; i++){
+        if(countryArray[i] === country){
+          //country already added, so remove it
+          countryArray.splice(i,1);
+          countryRemoved = true;
+          Meteor.users.update({_id : userID}, {$set: {countries: countryArray}}, function(err, doc){
+          if (err) {
+            console.log("Error in updating the country list: " + err);
+          }else {
+            console.log("updated the country list");
+          }
+          });
+          //change button to say "Save Country"
+          removeCountry = false;
+        }
+      }
+
+      if(!countryRemoved){
+        //need to add country
+        Meteor.users.update({_id : userID}, {$push: {countries: country}}, function(err, doc){
+        if (err) {
+          console.log("Error in updating the country list: " + err);
+        }else {
+          console.log("updated the country list");
+        }
+      });
+        //change button to say "Remove Country"
+        removeCountry = true;
+      }
+
+    }
+      return removeCountry;
+    }, //close updateCountries
+
+    getSavedState: function(country){
+      var userID = Meteor.user()._id;
+      var num = Meteor.users.find({$and: [{_id : userID}, {countries: {$exists: true}}]}).count();
+      if(num===0){
+        return "Save Country";
+      }else{
+        var countryArray = Meteor.users.find({_id: userID}).fetch()[0].countries;
+        for(var i = 0; i<countryArray.length; i++){
+          if(countryArray[i]===country){
+            return "Remove Country";
+          }
+        }
+        return "Save Country";
+      }
+    }
 }); //Meteor.methods
    
 } //on server

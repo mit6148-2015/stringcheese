@@ -7,8 +7,8 @@
 	left: -190px;
 }
 #regions_div{
-padding-top: 30px;
-padding-bottom: 60px;
+padding-top: -30px;
+padding-bottom: 10px;
  margin-left: auto;
   margin-right: auto;
   width: 100%;
@@ -40,6 +40,7 @@ nav{
     border: 2px solid;
     margin-top: 10px;
     text-transform: lowercase;
+    font-weight:lighter;
 }
 
 /*SCROLLY PAGE*/
@@ -50,24 +51,11 @@ nav{
 	position: absolute;
 	top: 0px;
 	left: 0px;
-	background-color:  #A75050;
+	background-color:  #A75050; /* background of first page */
   background-attachment: scroll;
 	z-index: 1;
 	
 }
-#startpage1{
-  width: 100%;
-  height: 2s00%;
-  min-height: 700px;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  background-color: #E86850;
-  background-attachment: scroll;
-  z-index: 1;
-  
-}
-
 
 #scroll{
 	position: absolute;
@@ -90,12 +78,14 @@ nav{
 	z-index: 4;
 }
 
-.first{
-	background-color: #F4D3B8; /*#A4F3F3; /*purple */ 
+.first{ /* background of second page */
+	/*background-color: #F4D3B8; /*#A4F3F3; /* */ 
+    background-color: #FFF; /*#A4F3F3; /* */ 
+
 }
 
 
-.second{
+.second{ /* background of third page */
 	background-color: #306464; /*#129793; /*green */  
 }
 
@@ -206,6 +196,9 @@ nav{
   padding: 10px;
   font-size: 16px;
 }
+
+  .form-control {padding-bottom: 30px;}
+}
 .form-signin .form-control:focus {
   
 }
@@ -231,8 +224,22 @@ nav{
 
 .alert {
   position: absolute;
-
+  display: hidden;
+}
+#loginButton {
+  margin-top: 5px;
+}
+.nav .dropdown-toggle .caret {
+  border-top-color: #FFF;
+  border-bottom-color: #FFF;
+}
+.dropdown-menu {
+  min-height: 300px;
+  min-width: 200px;
 }
 
-
+#signInEmail {max-width: 200px;}
+#signInPassword {max-width: 200px;}
+#signUpEmail {max-width: 200px;}
+#signUpPassword {max-width: 200px;}
 

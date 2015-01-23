@@ -6,7 +6,13 @@ Router.route('/country/:country', function() {
 		      console.log("Result(Hashtag from Country): "+ result);
 		      $("#countryHashtag").html(result);		    
 	});
-
+	Meteor.apply("getSavedState", [country], true, function(err, result){
+		if(err){
+			console.log("Error: "+ err);
+		}else{
+			$("#saveCountryButton").html(result);
+		}
+	});
 	this.render('countryTemplate', {
 	    data: function () {
 	      return {
