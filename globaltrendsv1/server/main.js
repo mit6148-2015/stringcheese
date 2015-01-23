@@ -158,6 +158,6 @@ Meteor.methods({
     });
   }
     
-
+});
 
 } //on server

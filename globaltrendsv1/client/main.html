@@ -101,9 +101,8 @@ function saveCountry(){
 
     <nav class="navbar navbar-fixed-top">
         <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-          <a class="navbar-brand" href="{{pathFor 'map'}}" id="globaltrends">GlobalTrends</a>
+          <a class="navbar-brand" href="{{pathFor 'map'}}" id="globaltrends">gTrends</a>
         </div>
           <!-- Search bar-->
             <form class="navbar-form navbar-left" role="search">
@@ -116,20 +115,17 @@ function saveCountry(){
             </span>
             </div>
           </form>
-          <!-- right side of nav bar -->
-          <!-- the login button -->
-          <ul class ="nav navbar-nav navbar-right">
-            <!-- <a class="login-link-text" id="login-sign-in-link">
-              <button type="button" class="btn btn-primary">Login?</button>
-            </a> -->
 
-            <div id="login-screen" style="color:white">
+          <!-- <ul class ="nav navbar-nav navbar-right"> -->
+            
+
+<!--             <div id="login-screen" style="color:white">
               {{>loginButtons}}
 
-            </div>
-          </ul>
-          <!-- the 3 view options -->
-          {{#if currentUser}}
+            </div> -->
+          <!-- </ul> -->
+
+
           <ul class="nav navbar-nav navbar-right">
             <a href="{{pathFor 'map'}}" style="font-weight:lighter">
               <button type="button" class="btn btn-info outline">World</button></a>
@@ -137,8 +133,18 @@ function saveCountry(){
               <button type="button" class="btn btn-success outline">Selected</button></a>
             <a href="{{pathFor 'local'}}" style="font-weight:lighter">
               <button type="button" class="btn btn-warning outline">Local</button></a>
+              <!--this is the login dropdown-->
+            <div class="btn-group">
+              <button type="button" class="btn btn-info dropdown-toggle outline" data-toggle="dropdown" aria-expanded="false">
+                login <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <input type="text" class="form-control" placeholder="Email address" id="signInEmail">
+              <input type="text" class="form-control" placeholder="Password" id="signInPassword">
+              </ul>
+            </div>
+            <!--end login dropdown-->
           </ul>
-          {{/if}}
         </div><!-- /.navbar-collapse -->
     </nav>
 
@@ -147,28 +153,22 @@ function saveCountry(){
 <!---------------------------------------------------------------------------------------------->
 
 <template name="map">
-   <!-- <h1> see what's trending around the world </h1> -->
    <div id ="startpage" class="container-fluid">
     
       <div id="map-blurb"><h1 style="padding: 70px 0px 0px 70px; color:white"> what's trending today? </h1>
       </div>
 
-
-{{>login}}
-{{>register}}
+<!-- 
+{{>login}} -->
+<!-- {{>register}} -->
+{{>main}}
 <!-- testing -->
 
  
-
-
-<!-- <h3 style="padding: 70px 0px 0px 70px; color:white; line-height: 150%">Search for a country ('Italy', 'United States', 'Canada', 'Brazil', 'Japan', 'Norway', 'Russia', 'Algeria', 'Mexico', 'South Africa', 'Australia', 'Spain', 'Germany' ) or click on a country below</h3> -->
       <div id="scroll" class ="container-fluid">
       
       <div class ="first segment container-fluid">
         <div id="regions_div"></div> 
-        <!-- <div id="explanation">
-          <h1 style="padding: 70px 0px 0px 70px"> what's trending today? </h1>
-        </div> -->
       </div> <!--end first segment container-fluid -->
 
       <div class ="second segment container-fluid">
@@ -197,28 +197,6 @@ function saveCountry(){
   <div id ="startpage" class="container-fluid">
 
 
-    <!-- <div class="nav pull-right">
-      {{> user_info}}
-    </div> -->
-  <!-- this is the sign-in -->
-<!--     <div class="container">
-          <div class="row">
-              <div class="col-sm-6 col-md-4 col-md-offset-4">
-                  <div class="account-wall">
-                      <img class="profile-img" src="http://1.bp.blogspot.com/-hnwO6fzzfhg/TgFYrwKRZrI/AAAAAAAALJU/PL4Zxretc5w/s1600/world-globe-icon-green.png"
-                          alt="">
-                      <form class="form-signin">
-                      <input type="text" class="form-control" placeholder="Email" required autofocus>
-                      <input type="password" class="form-control" placeholder="Password" required>
-                      <button class="btn btn-lg btn-primary btn-block" type="submit">
-                          Sign in</button>
-                      </form>
-                  </div>
-                  <a href="#" class="text-center new-account">Create an account</a>
-                </div>
-            </div>
-        </div>  -->
-
       <div id="scroll" class ="container-fluid">
         <div class ="first segment container-fluid">
         </div> <!--end first segment container-fluid-->
@@ -238,34 +216,6 @@ function saveCountry(){
 
 </template>
 
-
-<!-- LOGIN SHIT THIS BETTER WORK -->
-
-<template name="user_loggedin">
-  {{#if loggingIn}}
-    <li><a> Logging in... </a></li>
-  {{else}}
-    <li> <img class="img-rounded" src="{{currentUser.profile.avatar_url}}"> </li>
-    <li><a id="logout">Logout</a></li>
-  {{/if}}
-</template>
-
-<template name="user_loggedout">
-  <li><a id="login">Login</a></li>
-</template>
-
-<template name="user_info">
-  <ul class="nav pull-right">
-    {{#if currentUser}}
-      {{> user_loggedin}}
-    {{else}}
-      {{>user_loggedout}}
-    {{/if}}
-  </ul>
-</template>
-
-
-
 <template name="countryTemplate" id="countryTemplateID">
   <div id="startpage">
   <div id="instafeed">
@@ -278,36 +228,12 @@ function saveCountry(){
   </div>
 </template>
 
-<!--<script type="text/javascript">
-// function getCountrySearchInput(){
-//   var country = $('searchText').val();
-//   window.location.assign("/country/" + country);
-// };
+<!-- LOGIN SHIT THIS BETTER WORK -->
 
-//   //  Template.countryTemplate.helper({
-//   // //   var temp = function(){
-//   // //     $('searchbutton').onclick(function(){
 
-//   // //     $('searchText').val
-//   //   specificCountry: 
+<!---------------------------------------------------->
 
-//   // // }
-
-//   //   specificHashtag: 
-//   // });
-  </script> -->
-<!-- <template name="currentUser">
-    {{#if currentUser}}
-        <form>
-            <input type="text" name="playerName">
-            <input type="submit" value="Add Player">
-        </form>
-    {{/if}}
-</template> -->
-
-<template name="login">
-
-   <!--THIS IS THE SIGN IN SHIT-->
+<!-- <template name="login">
    <div class="login_shit">
     <div class="container">
       <div class="input-group input-group-lg">
@@ -318,21 +244,15 @@ function saveCountry(){
               <input type="text" class="form-control" placeholder="Email address" id="inputEmail">
               <input type="text" class="form-control" placeholder="Password" id="inputPassword">
             </div>
-            <div class="checkbox">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
-            </div>
             <button class="btn btn-lg btn-info outline" type="submit" id="signInButton">Sign in</button>
       </form>
     </div>
-    </div> <!-- /container -->
+    </div> 
 </div>
-<!-- END SIGN IN SHIT -->
 
-</template>
+</template> -->
 
-<template name="register">
+<!-- <template name="register">
 
     <form id="register-form" action="action">
       <div>
@@ -341,6 +261,93 @@ function saveCountry(){
        <input type="submit" id="create-account" value="Create an Account" />
      </div>
    </form>
+</template> -->
+
+<!---------------------------------------------------->
+
+<template name="main">
+    {{> alert}}
+    {{#unless resetPassword}}
+        {{#unless currentUser}}
+            {{#unless showForgotPassword}}
+                {{> signIn}}
+                {{> signUp}}
+            {{else}}
+                {{> forgotPassword}}
+            {{/unless}}
+        {{else}}
+            {{> signOut}}
+        {{/unless}}
+    {{else}}
+        {{> resetPassword}}
+    {{/unless}}
 </template>
+
+<template name="alert">
+    <div class="alert">
+        {{alert}}
+    </div>
+    <!-- end .alert -->
+</template>
+
+<template name="signIn">
+    <div class="sign-in" id="signIn">
+        <a class="show-forgot-password" href="javascript:void(0);" id="showForgotPassword">Forgot Password</a>
+        <form action="/signin" class="sign-in-form" id="signInForm" method="post">
+            <input class="form-control email" id="signInEmail" type="text" name="email" placeholder="Email Address">
+            <input class="form-control password" id="signInPassword" type="password" name="password" placeholder="Password">
+            <input class="btn-submit" type="submit" value="Sign In">
+        </form>
+    </div>
+    <!-- end .sign-in -->
+</template>
+
+<template name="signOut">
+    <div class="connected">
+        <span class="welcome">Welcome New Meteorite!</span>
+        <a class="sign-out" href="/" id="signOut">Sign Out</a>
+    </div>
+    <!-- end .connected -->
+</template>
+
+<template name="signUp">
+    <div class="sign-up">
+        <form action="/sign-up" class="sign-up-form" id="signUpForm" method="post">
+            <input class="form-control email" id="signUpEmail" name="email" placeholder="Email Address" type="text" >
+            <input class="form-control password" id="signUpPassword" name="password" placeholder="Password" type="password">
+            <input class="btn-submit" type="submit" value="Join Meteorites!">
+        </form>
+    </div>
+    <!-- end .sign-up -->
+</template>
+
+<template name="forgotPassword">
+    <div class="forgot-password" id="forgotPassword">
+        <a class="return-to-sign-in" href="javascript:void(0);" id="returnToSignIn">Return</a>
+        <form action="/forgot" class="forgot-password-form" id="forgotPasswordForm" method="post">
+            <input class="email" id="forgotPasswordEmail" type="text" name="email" placeholder="Email Address">
+            <input class="btn-submit" type="submit" value="Send">
+        </form>
+    </div>
+    <!-- end .forgot-password -->
+</template>
+
+<template name="resetPassword">
+    <div class="reset-password">
+        <h2 class="headline">You're now saved, <span class="bold">follow the light!</span></h2>
+        <h3 class="details">You just have to type and confirm  your new password to regain access to your dashboard.</h3>
+        <form action="/reset-password" class="reset-password-form" id="resetPasswordForm" method="post">
+            <input class="password" id="resetPasswordPassword" name="password" placeholder="Your New Password" type="password" >
+            <input class="password-confirm" id="resetPasswordPasswordConfirm" name="password-confirm" placeholder="Confirm New Password" type="password" >
+            <input class="btn-submit" type="submit" value="Reset">
+        </form>
+    </div>
+    <!-- end .reset-password -->
+</template>
+
+
+
+
+
 
  
