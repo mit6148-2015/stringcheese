@@ -180,7 +180,22 @@ areValidPasswords = function(password, confirm) {
     return true;
 };
 
+//makes sure menu pop-up doesn't disappear when click on form
+   $(function () {
+            $('.dropdown-menu input').click(function (event) {
+                event.stopPropagation();
+            });
+    });
 
+   function stayOpen() {
+    $('.dropdown-menu input').click(function (event) {
+                event.stopPropagation();
+            });
+}
+
+
+
+$("#signOut").hide();
 
 } //on client
 

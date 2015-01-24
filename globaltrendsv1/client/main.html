@@ -109,6 +109,7 @@ function saveCountry(){
 
 
           <ul class="nav navbar-nav navbar-right">
+            {{#if currentUser}}
             <a href="{{pathFor 'map'}}" style="font-weight:lighter">
               <button type="button" class="btn btn-info outline">World</button></a>
             <a href="{{pathFor 'selected'}}" style="font-weight:lighter">
@@ -116,20 +117,57 @@ function saveCountry(){
             <a href="{{pathFor 'local'}}" style="font-weight:lighter">
               <button type="button" class="btn btn-warning outline">Local</button></a>
               <!--this is the login dropdown-->
+            {{/if}}
             <div class="btn-group">
+              {{#unless currentUser}}
               <button type="button" class="btn btn-info outline dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="loginButton">
                 login <span class="caret"></span>
               </button>
+  
               <ul class="dropdown-menu" role="menu">
-                <input type="text" class="form-control email" placeholder="Email address" id="signInEmail">
-              <input type="text" class="form-control password" placeholder="Password" id="signInPassword">
+                {{>signIn}}
               </ul>
+              {{/unless}}
+
+              {{#if currentUser}}
+              {{>signOut}}
+              <!-- <button type="button" class="btn btn-info outline" aria-expanded="false" id="signOut"> sign out </button> -->
+              {{/if}}
             </div>
+
             <!--end login dropdown-->
           </ul>
         </div><!-- /.navbar-collapse -->
     </nav>
 
+
+     <!-- <div class="navbar-collapse collapse">
+        <div class="navbar-right">
+            <div class="btn-group">
+                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                    Login <span class="caret"></span>
+                </button>
+                <div class="dropdown-menu" >
+                    <div class="col-sm-12">
+                        <div class="col-sm-12">
+                            Login
+                        </div>
+                        <div class="col-sm-12">
+                            <input type="text" placeholder="Uname or Email" onclick="return false;" class="form-control input-sm" id="inputError" />
+                        </div>
+                        <br/>
+                        <div class="col-sm-12">
+                            <input type="password" placeholder="Password" class="form-control input-sm" name="password" id="Password1" />
+                        </div>
+                        <div class="col-sm-12">
+                            <button type="submit" class="btn btn-success btn-sm">Sign in</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ -->
 
 </body>
 <!---------------------------------------------------------------------------------------------->
@@ -255,13 +293,13 @@ function saveCountry(){
     {{#unless resetPassword}}
         {{#unless currentUser}}
             {{#unless showForgotPassword}}
-                {{> signIn}}
+                <!-- {{> signIn}} -->
                 {{> signUp}}
             {{else}}
                 {{> forgotPassword}}
             {{/unless}}
         {{else}}
-            {{> signOut}}
+            {{signOut}}
         {{/unless}}
     {{else}}
         {{> resetPassword}}
@@ -280,34 +318,49 @@ function saveCountry(){
     <div class="sign-in" id="signIn">
 <!--         <a class="show-forgot-password" href="javascript:void(0);" id="showForgotPassword">Forgot Password</a> -->
         <form action="/signin" class="sign-in-form form-signin" id="signInForm" method="post">
-            <input class="form-control email" id="signInEmail" type="text" name="email" placeholder="Email Address">
-            <input class="form-control password" id="signInPassword" type="password" name="password" placeholder="Password">
-            <input class="btn-submit" type="submit" value="Sign In">
+            <ul><input class="form-control email" id="signInEmail" type="text" name="email" placeholder="Email Address" onclick="stayOpen()"></ul>
+            <ul><input class="form-control password" id="signInPassword" type="password" name="password" placeholder="Password"></ul>
+            <ul><input class="btn-submit" type="submit" value="Sign In"></ul>
         </form>
     </div>
-    <!-- end .sign-in -->
+   
 </template>
+
+
+<!-- <template name="signOut">
+    <div class="connected">
+      <nav class="navbar navbar-fixed-top">
+        <ul class="nav navbar-nav navbar-right">
+          <div class="btn-group">
+          <button type="button" class="btn btn-info outline" aria-expanded="false" id="signOut"> sign out </button>
+          </div>
+        </ul>
+      </nav>
+    </div>
+</template> -->
 
 <template name="signOut">
     <div class="connected">
-        <span class="welcome">Welcome New Meteorite!</span>
-        <a class="sign-out" href="/" id="signOut">Sign Out</a>
+          <button type="button" class="btn btn-info outline" aria-expanded="false" id="signOut"> sign out </button>
+          
+        
     </div>
 </template>
 
 
+
+
 <template name="signUp">
-    <div class="sign-up login_shit container">
-      <div class="input-group input-group-lg">
+    <div class="sign-up login_shit container" style="position:fixed; top:30px">
+      <div class="input-group input-group-lg" >
         <form action="/sign-up" class="sign-up-form form-signin" id="signUpForm" method="post" style="margin: 150px 0px 0px 450px">
           <h2 class="form-signin-heading" style="text-align:center; color:white; font-weight: lighter">gTrends</h2>
+          <p class="form-signin-heading" style="text-align:center; color:white; font-weight:lighter; letter-spacing:.5px">See what's trending around the world. Follow your favorite places.</p>
 
           <div class="input-group input-group-sm" style="margin-bottom:20px">
             <input class="form-control email" id="signUpEmail" name="email" placeholder="Email Address" type="text" style="text-align:center;">
             <input class="form-control password" id="signUpPassword" name="password" placeholder="Password" type="password" style="text-align:center;">
-            
-            <!-- <input class="btn-submit" type="submit" value="Join Meteorites!"> -->
-            <button class="btn btn-lg btn-info outline btn-submit" type="submit" id="signInButton" style="margin-left: 80px">Create Account</button>
+            <button class="btn btn-lg btn-info outline btn-submit" type="submit" id="signInButton" style="margin-left: 50px">Create Account</button>
 
           </div>
         </form>
@@ -324,29 +377,6 @@ function saveCountry(){
         </form>
     </div>
 </template> -->
-
-
-<!-- <template name="login">
-   <div class="login_shit">
-    <div class="container">
-      <div class="input-group input-group-lg">
-      <form id="form-signin" style="margin: 150px 0px 0px 450px">
-        <h2 class="form-signin-heading" style="text-align:center; color:white; font-weight: lighter">gTrends</h2>
-
-            <div class="input-group input-group-sm" style="margin-bottom:20px">
-              <input type="text" class="form-control email" placeholder="Email address" style="text-align:center;" id="inputEmail">
-              <input type="text" class="form-control password" placeholder="Password" style="text-align:center" id="inputPassword">
-            </div>
-            <button class="btn btn-lg btn-info outline" type="submit" id="signInButton" style="margin-left: 80px">Create Account</button>
-      </form>
-    </div>
-    </div> 
-</div>
-
-</template> -->
-
-
-
 
 
 

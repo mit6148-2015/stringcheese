@@ -43,6 +43,10 @@ nav{
     font-weight:lighter;
 }
 
+#signOut {
+  margin-top: 5px;
+}
+
 /*SCROLLY PAGE*/
 #startpage{
 	width: 100%;
@@ -201,7 +205,7 @@ nav{
     padding-bottom: 30px;
 
   }
-/*
+
 .form-signin .form-control:focus {
   
 }
@@ -214,7 +218,7 @@ nav{
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-}*/
+}
 
 
 
@@ -235,12 +239,26 @@ nav{
   border-bottom-color: #FFF;
 }
 .dropdown-menu {
-  min-height: 300px;
-  min-width: 200px;
+position: absolute;
+top: 100%;
+left: 0;
+z-index: 1000;
+display: none;
+float: left;
+  min-width: 400px;
+padding: 5px 0;
+margin: 2px 0 0;
+font-size: 14px;
+text-align: left;
+list-style: none;
+background-color: #fff;
+-webkit-background-clip: padding-box;
+background-clip: padding-box;
+border: 1px solid #ccc;
+border: 1px solid rgba(0,0,0,.15);
+border-radius: 4px;
 }
 
-/*#signInEmail {max-width: 200px;}
-#signInPassword {max-width: 200px;}
-#signUpEmail {max-width: 200px;}
-#signUpPassword {max-width: 200px;}*/
-
+.form-control .email {
+  font-size: 10px;
+}
