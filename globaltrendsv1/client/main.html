@@ -15,84 +15,66 @@
 
 
 <script type="text/javascript">
-  $(document).ready(function(){
-    $("#searchText").keypress(function(e) {
+ $(document).ready(function(){
+    $("#searchText").keypress(function(e) {
 
-      if(e.which == 13) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        getCountrySearchInput();
-        return false; //don't type letter
-      }
-      return true; //letting any letter pass
-    });
-  });
+      if(e.which == 13) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        getCountrySearchInput();
+        return false; //don't type letter
+      }
+      return true; //letting any letter pass
+    });
+  });
 
-  function getCountrySearchInput(){
-    var country = $('#searchText').val();
-    console.log(country);
-    
-    window.location.assign("/country/" + country);
-  };
+  function getCountrySearchInput(){
+    var tempCountry = $('#searchText').val();
+    var country = tempCountry.toTitleCase();
+    console.log("COUNTRY: "+ country);
+  
+    Meteor.call("getAllCountries", function(err, result){
+      var temp = JSON.parse(result);
+      // console.log("WHAT ARE THE COUNTRIES? " + temp);
+      // console.log("WHAT ARE THE COUNTRIES? " + temp[0]);
 
-  function getUserInfo() {
-    var username = $('')
-  }
+      var inDatabase = false;
+
+      for(var i=0; i<13;i++){
+        if(country===temp[i]){
+          inDatabase = true;
+        }
+      }
+
+      if(inDatabase){
+        window.location.assign("/country/" + country);
+      } else {
+        alert("Please enter one of these countries: "+ temp);
+      }
+    });
+  };
 
 
 function saveCountry(){
   console.log("in saveCountry");
-  //if country is not already saved in their db - add to db and change button to say "remove country"
   var currentCountry = $("#countryName").text();
-  var currentUser = Meteor.user().username;
+  console.log("currentCountry: "+ currentCountry);
 
-// if(Meteor.users.find({username: "testing"})[0].countries===undefined){
-//   console.log("trying to add the property...");
-//       Meteor.apply("insertCountryProperty", [currentCountry], [true], function(err, result){
-//        console.log("Error: " + err);
-//        console.log("Result: "+ result);
-//     });  
-// }else{ //its not undefined so we need to check if the country has already been added
-  console.log("before Meteor.apply");
-  Meteor.apply("getCountries", function(err, result){
-    console.log("in Meteor.apply");
-    var countries = JSON.parse(result);
-    if(countries === undefined){
-      console.log("trying to add the property...");
-      Meteor.apply("insertCountryProperty", [currentCountry], [true], function(err, result){
-        console.log("Error: " + err);
-        console.log("Result: "+ result);
-      });
+  Meteor.apply("updateCountries", [currentCountry], function(err, result){
+    //do everything in server
+    if(err){
+    console.log("Error in updateCountries: "+err);
     }else{
-      console.log("countries was not undefined");
-      var foundcountry = false;
-      for(var i =0; i<countries.length; i++){
-        if(countries[i]===currentCountry){
-          countries.splice(i,1);
-          Meteor.apply("deleteCountry", [JSON.stringify(countries)], [true], function(err, result){
-            console.log("Error in deleteCountry: "+ err);
-            console.log("Result of deleteCountry: "+ result);
-          });
-          foundcountry = true;
-          $("#saveCountryButton").html("This changed!--Removed Country");
-        }
-      }
-      if(!foundcountry){
-        Meteor.apply("insertCountry", [currentCountry], [true], function(err, result){
-          console.log("Error in insertCountryProperty: " +err);
-          console.log("Result of insertCountryProperty: " +result);
-        });
-        $("#saveCountryButton").html("This changed!--Added Country");
+      console.log("Result of updateCountries: "+result);
+      if(result){ //if true than set button to "remove country"
+        $('#saveCountryButton').html("Remove Country");
+      }else{ //if false then set button to "save country"
+        $('#saveCountryButton').html("Save Country");
       }
     }
-
   });
 
-
-
-  //if country is saved in their db - remove from db and change button to say "add country"
 }
-
 </script>
 
 </head>
@@ -224,7 +206,7 @@ function saveCountry(){
     <div id="titlebox">
       <h1 id="countryName">{{specificCountry}}</h1>
       <h2 id="countryHashtag"></h2>
-      <button type="button" onclick="saveCountry()" id="saveCountryButton">Save Country</button>
+      <button type="button" onclick="saveCountry()" id="saveCountryButton">{{saveCountry}}</button>
     </div>
   </div>
   </div>
@@ -393,7 +375,12 @@ function saveCountry(){
 </template>
 
 
-
+<template name="notFound">
+<div id ="startpage" class="container-fluid">
+<h1 style="padding: 70px 0px 0px 70px; font-weight:lighter; color:white; letter-spacing: 1px">Oops! That page does not exist.</h1>
+<h2 style="padding: 70px 0px 0px 70px; font-weight:lighter; color:white; letter-spacing: 1px">Check to see if you have misspelled the URL or <a href="{{pathFor 'map'}}" style="color: #306464; font-weight:bold">click here</a> to go back to the homepage. </h2>
+</div>
+</template>
 
 
 

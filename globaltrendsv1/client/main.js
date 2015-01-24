@@ -76,7 +76,7 @@ if (Meteor.isClient) {
  /* -------------------------------------------------------------------------------- */
 
 
- Template.alert.helpers({
+Template.alert.helpers({
     alert: function() {
         return Session.get('alert');
     }
