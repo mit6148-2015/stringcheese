@@ -84,7 +84,7 @@ function saveCountry(){
     <nav class="navbar navbar-fixed-top">
         <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="{{pathFor 'map'}}" id="globaltrends">gTrends</a>
+          <a class="navbar-brand" href="{{pathFor 'home'}}" id="globaltrends">gTrends</a>
         </div>
           <!-- Search bar-->
             <form class="navbar-form navbar-left" role="search">
@@ -110,11 +110,11 @@ function saveCountry(){
 
           <ul class="nav navbar-nav navbar-right">
             <a href="{{pathFor 'map'}}" style="font-weight:lighter">
-              <button type="button" class="btn btn-info outline">World</button></a>
-            <a href="{{pathFor 'selected'}}" style="font-weight:lighter">
-              <button type="button" class="btn btn-success outline">Selected</button></a>
-            <a href="{{pathFor 'local'}}" style="font-weight:lighter">
-              <button type="button" class="btn btn-warning outline">Local</button></a>
+              <button type="button" class="btn btn-info outline">Map</button></a>
+            <a href="{{pathFor 'world'}}" style="font-weight:lighter">
+              <button type="button" class="btn btn-success outline">World</button></a>
+            <a href="{{pathFor 'saved'}}" style="font-weight:lighter">
+              <button type="button" class="btn btn-warning outline">Saved</button></a>
               <!--this is the login dropdown-->
             <div class="btn-group">
               <button type="button" class="btn btn-info outline dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="loginButton">
@@ -134,25 +134,22 @@ function saveCountry(){
 </body>
 <!---------------------------------------------------------------------------------------------->
 
-<template name="map">
+<template name="home">
    <div id ="startpage" class="container-fluid">
     
-      <div id="map-blurb"><h1 style="padding: 70px 0px 0px 70px; font-weight:lighter; color:white; letter-spacing: 1px"> what's trending today? </h1>
+      <div id="map-blurb"><h1 style="padding: 100px 0px 0px 70px; font-weight:lighter; color:white; letter-spacing: 1px"> what's trending today? </h1>
       </div>
 
-<!-- {{>login}}  -->
-<!-- {{>register}} -->
-{{>main}}
-<!-- testing -->
+      <!-- {{>login}}  -->
+      <!-- {{>register}} -->
+      {{>main}}
+      <!-- testing -->
 
  
       <div id="scroll" class ="container-fluid">
       
       <div class ="first segment container-fluid">
-        <div id="map-blurb"><h1 style="padding: 30px 0px 0px 30px; font-weight:lighter; color: #A75050; letter-spacing: 1px"> what's trending today? </h1>
-      </div>
-
-        <div id="regions_div"></div> 
+        <div>{{>map}}</div> 
       </div> <!--end first segment container-fluid -->
 
       <div class ="second segment container-fluid">
@@ -164,20 +161,26 @@ function saveCountry(){
 </template>
 
 <template name="world">
+  <h1>world page</h1>
 </template>
 <!---------------------------------------------------------------------------------------------->
 
-<template name="selected">
-
+<template name="saved">
+  <h1>saved page</h1>
 </template>	
 
 <!---------------------------------------------------------------------------------------------->
-<template name="local">
-  <h1 style="padding: 30px"> this should be the local page </h1>
+<template name="map">
+  <div class ="first segment container-fluid">
+        <div id="map-blurb"><h1 style="padding: 30px 0px 0px 30px; font-weight:lighter; color: #A75050; letter-spacing: 1px"> what's trending today? </h1>
+      </div>
+
+        <div id="regions_div"></div> 
+      </div> <!--end first segment container-fluid -->
 </template> 
 <!---------------------------------------------------------------------------------------------->
 
-<template name = "home">
+<template name = "scrollytest">
   <div id ="startpage" class="container-fluid">
 
 
