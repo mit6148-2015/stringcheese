@@ -3,11 +3,11 @@ if (Meteor.isClient) {
   passwordSignupFields: "USERNAME_ONLY"
   });
 
- //  Meteor.setInterval(function(){
- //  	Meteor.call("connectTwitter",function(err, result){
- //    console.log(result);
- //    });
-	// },1200000);
+  Meteor.setInterval(function(){
+  	Meteor.call("connectTwitter",function(err, result){
+    console.log(result);
+    });
+	},1200000);
   
 
  // Template.login.events({

@@ -147,27 +147,22 @@ function saveCountry(){
 </template>
 
 <template name="world">
-  <div style="background-color:#A75050">
-    <div id="instafeed">
+    <div id="instafeed" style="background-color:#A75050">
       <div id="titlebox">
         <h1 style ="padding:20px 0px 0px 0px; font-weight:lighter; color:white">Around the World</h1>
         <h3>Pictures Corresponding to Top Hashtags Around the World</h3>
       </div>
     </div>
-  </div>
 </template>
 <!---------------------------------------------------------------------------------------------->
 
 <template name="saved">
-  <div style="background-color:#A75050; height:100%">
-    <div id="instafeed">
+    <div id="instafeed" style="background-color:#A75050; min-height:700px;">
       <div id="titlebox">
         <h1 style ="padding:20px 0px 0px 0px; font-weight:lighter; color:white">Your Saved Countries</h1>
-   
         <h4>Add or Remove Your Favorite Countries by Searching For Them</h4>
       </div>
     </div>
-  </div>
 </template>	
 
 <!---------------------------------------------------------------------------------------------->
@@ -181,39 +176,14 @@ function saveCountry(){
 </template> 
 <!---------------------------------------------------------------------------------------------->
 
-<template name = "scrollytest">
-  <div id ="startpage" class="container-fluid">
-
-
-      <div id="scroll" class ="container-fluid">
-        <div class ="first segment container-fluid">
-        </div> <!--end first segment container-fluid-->
-
-        <div class ="second segment container-fluid">
-        </div>
-      </div> <!-- div scroll end -->
-
-    <div id="scroll" class ="container-fluid">
-      <div class ="first segment container-fluid">
-      </div>
-      <div class ="second segment container-fluid">
-      </div>
-
-    </div>
-  </div>
-
-</template>
-
 <template name="countryTemplate" id="countryTemplateID">
-  <div style="background-color:#A75050">
-    <div id="instafeed">
+    <div id="instafeed" style="background-color:#A75050; min-height:700px;">
       <div id="titlebox">
         <h1 id="countryName" style ="padding:20px 0px 0px 0px; font-weight:lighter; color:white">{{specificCountry}}</h1>
         <h2 id="countryHashtag"></h2>
         <button type="button" onclick="saveCountry()" id="saveCountryButton">{{saveCountry}}</button>
       </div>
     </div>
-  </div>
 </template>
 
 <!-- LOGIN SHIT THIS BETTER WORK -->
