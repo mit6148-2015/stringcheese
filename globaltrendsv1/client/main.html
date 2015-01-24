@@ -6,12 +6,12 @@
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
 	  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
-    <link rel="icon" href="../../favicon.ico">
+    <!-- <link rel="icon" href="../../favicon.ico"> -->
     <!-- Bootstrap core CSS -->
     <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="signin.css" rel="stylesheet">
+    <!-- <link href="signin.css" rel="stylesheet"> -->
 
 
 <script type="text/javascript">
@@ -158,7 +158,7 @@ function saveCountry(){
       <div id="map-blurb"><h1 style="padding: 70px 0px 0px 70px; font-weight:lighter; color:white; letter-spacing: 1px"> what's trending today? </h1>
       </div>
 
-{{>login}} 
+<!-- {{>login}}  -->
 <!-- {{>register}} -->
 {{>main}}
 <!-- testing -->
@@ -235,8 +235,8 @@ function saveCountry(){
 
 <!---------------------------------------------------->
 
-<!-- this is actually to sign up -->
-<template name="login">
+<!-- this is actually to sign up; pretty buttons -->
+<!-- <template name="login">
    <div class="login_shit">
     <div class="container">
       <div class="input-group input-group-lg">
@@ -244,8 +244,8 @@ function saveCountry(){
         <h2 class="form-signin-heading" style="text-align:center; color:white; font-weight: lighter">gTrends</h2>
 
             <div class="input-group input-group-sm" style="margin-bottom:20px">
-              <input type="text" class="form-control" placeholder="Email address" style="text-align:center;" id="inputEmail">
-              <input type="text" class="form-control" placeholder="Password" style="text-align:center" id="inputPassword">
+              <input type="text" class="form-control email" placeholder="Email address" style="text-align:center;" id="inputEmail">
+              <input type="text" class="form-control password" placeholder="Password" style="text-align:center" id="inputPassword">
             </div>
             <button class="btn btn-lg btn-info outline" type="submit" id="signInButton" style="margin-left: 80px">Create Account</button>
       </form>
@@ -253,7 +253,7 @@ function saveCountry(){
     </div> 
 </div>
 
-</template>
+</template> -->
 
 <!-- <template name="register">
 
@@ -296,8 +296,8 @@ function saveCountry(){
 
 <template name="signIn">
     <div class="sign-in" id="signIn">
-        <a class="show-forgot-password" href="javascript:void(0);" id="showForgotPassword">Forgot Password</a>
-        <form action="/signin" class="sign-in-form" id="signInForm" method="post">
+<!--         <a class="show-forgot-password" href="javascript:void(0);" id="showForgotPassword">Forgot Password</a> -->
+        <form action="/signin" class="sign-in-form form-signin" id="signInForm" method="post">
             <input class="form-control email" id="signInEmail" type="text" name="email" placeholder="Email Address">
             <input class="form-control password" id="signInPassword" type="password" name="password" placeholder="Password">
             <input class="btn-submit" type="submit" value="Sign In">
@@ -311,10 +311,29 @@ function saveCountry(){
         <span class="welcome">Welcome New Meteorite!</span>
         <a class="sign-out" href="/" id="signOut">Sign Out</a>
     </div>
-    <!-- end .connected -->
 </template>
 
+
 <template name="signUp">
+    <div class="sign-up login_shit container">
+      <div class="input-group input-group-lg">
+        <form action="/sign-up" class="sign-up-form form-signin" id="signUpForm" method="post" style="margin: 150px 0px 0px 450px">
+          <h2 class="form-signin-heading" style="text-align:center; color:white; font-weight: lighter">gTrends</h2>
+
+          <div class="input-group input-group-sm" style="margin-bottom:20px">
+            <input class="form-control email" id="signUpEmail" name="email" placeholder="Email Address" type="text" style="text-align:center;">
+            <input class="form-control password" id="signUpPassword" name="password" placeholder="Password" type="password" style="text-align:center;">
+            
+            <!-- <input class="btn-submit" type="submit" value="Join Meteorites!"> -->
+            <button class="btn btn-lg btn-info outline btn-submit" type="submit" id="signInButton" style="margin-left: 80px">Create Account</button>
+
+          </div>
+        </form>
+    </div>
+  </div>
+</template>
+
+<!-- <template name="signUp">
     <div class="sign-up">
         <form action="/sign-up" class="sign-up-form" id="signUpForm" method="post">
             <input class="form-control email" id="signUpEmail" name="email" placeholder="Email Address" type="text" >
@@ -322,8 +341,32 @@ function saveCountry(){
             <input class="btn-submit" type="submit" value="Join Meteorites!">
         </form>
     </div>
-    <!-- end .sign-up -->
-</template>
+</template> -->
+
+
+<!-- <template name="login">
+   <div class="login_shit">
+    <div class="container">
+      <div class="input-group input-group-lg">
+      <form id="form-signin" style="margin: 150px 0px 0px 450px">
+        <h2 class="form-signin-heading" style="text-align:center; color:white; font-weight: lighter">gTrends</h2>
+
+            <div class="input-group input-group-sm" style="margin-bottom:20px">
+              <input type="text" class="form-control email" placeholder="Email address" style="text-align:center;" id="inputEmail">
+              <input type="text" class="form-control password" placeholder="Password" style="text-align:center" id="inputPassword">
+            </div>
+            <button class="btn btn-lg btn-info outline" type="submit" id="signInButton" style="margin-left: 80px">Create Account</button>
+      </form>
+    </div>
+    </div> 
+</div>
+
+</template> -->
+
+
+
+
+
 
 <template name="forgotPassword">
     <div class="forgot-password" id="forgotPassword">

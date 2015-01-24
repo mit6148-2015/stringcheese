@@ -45,7 +45,7 @@ Template.map.rendered = function(){
         width: 834,
         height: 650,
         dataMode: 'regions',
-        backgroundColor: '#129793', /* light blue */
+        backgroundColor: '#FFF', /* light blue */
         keepAspectRatio: true,
         width: $(window).width(),
         datalessRegionColor: '#408640' /* green */

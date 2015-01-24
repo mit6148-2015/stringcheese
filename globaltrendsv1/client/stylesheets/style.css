@@ -197,8 +197,11 @@ nav{
   font-size: 16px;
 }
 
-  .form-control {padding-bottom: 30px;}
-}
+  .form-control {
+    padding-bottom: 30px;
+
+  }
+/*
 .form-signin .form-control:focus {
   
 }
@@ -211,11 +214,9 @@ nav{
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-}
-
-/*#signUpEmail {
-  margin-bottom: 20px;
 }*/
+
+
 
 .login_shit {
   margin-left: auto;
@@ -238,8 +239,8 @@ nav{
   min-width: 200px;
 }
 
-#signInEmail {max-width: 200px;}
+/*#signInEmail {max-width: 200px;}
 #signInPassword {max-width: 200px;}
 #signUpEmail {max-width: 200px;}
-#signUpPassword {max-width: 200px;}
+#signUpPassword {max-width: 200px;}*/
 
