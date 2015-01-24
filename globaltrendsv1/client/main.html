@@ -80,57 +80,43 @@ function saveCountry(){
 </head>
 
 <body>
-
-    <nav class="navbar navbar-fixed-top">
-        <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="{{pathFor 'home'}}" id="globaltrends">gTrends</a>
-        </div>
-          <!-- Search bar-->
-            <form class="navbar-form navbar-left" role="search">
-            <div class="input-group input-group-sm">
-              <input type="text" class="form-control" placeholder="Search" id="searchText">
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-default input-group-addon" id="searchbutton" onclick="getCountrySearchInput()">
-                    <span class="glyphicon glyphicon-search"></span>
-                </button>
-            </span>
-            </div>
-          </form>
-
-          <!-- <ul class ="nav navbar-nav navbar-right"> -->
-            
-
-<!--             <div id="login-screen" style="color:white">
-              {{>loginButtons}}
-
-            </div> -->
-          <!-- </ul> -->
-
-
-          <ul class="nav navbar-nav navbar-right">
-            <a href="{{pathFor 'map'}}" style="font-weight:lighter">
-              <button type="button" class="btn btn-info outline">Map</button></a>
-            <a href="{{pathFor 'world'}}" style="font-weight:lighter">
-              <button type="button" class="btn btn-success outline">World</button></a>
-            <a href="{{pathFor 'saved'}}" style="font-weight:lighter">
-              <button type="button" class="btn btn-warning outline">Saved</button></a>
-              <!--this is the login dropdown-->
-            <div class="btn-group">
-              <button type="button" class="btn btn-info outline dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="loginButton">
-                login <span class="caret"></span>
+  <nav class="navbar navbar-fixed-top">
+      <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="{{pathFor 'home'}}" id="globaltrends">gTrends</a>
+      </div>
+        <!-- Search bar-->
+          <form class="navbar-form navbar-left" role="search">
+          <div class="input-group input-group-sm">
+            <input type="text" class="form-control" placeholder="Search" id="searchText">
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default input-group-addon" id="searchbutton" onclick="getCountrySearchInput()">
+                  <span class="glyphicon glyphicon-search"></span>
               </button>
-              <ul class="dropdown-menu" role="menu">
-                <input type="text" class="form-control email" placeholder="Email address" id="signInEmail">
-              <input type="text" class="form-control password" placeholder="Password" id="signInPassword">
-              </ul>
-            </div>
-            <!--end login dropdown-->
-          </ul>
-        </div><!-- /.navbar-collapse -->
-    </nav>
-
-
+          </span>
+          </div>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+          <a href="{{pathFor 'map'}}" style="font-weight:lighter">
+            <button type="button" class="btn btn-info outline">Map</button></a>
+          <a href="{{pathFor 'world'}}" style="font-weight:lighter">
+            <button type="button" class="btn btn-success outline">World</button></a>
+          <a href="{{pathFor 'saved'}}" style="font-weight:lighter">
+            <button type="button" class="btn btn-warning outline">Saved</button></a>
+            <!--this is the login dropdown-->
+          <div class="btn-group">
+            <button type="button" class="btn btn-info outline dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="loginButton">
+              login <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <input type="text" class="form-control email" placeholder="Email address" id="signInEmail">
+            <input type="text" class="form-control password" placeholder="Password" id="signInPassword">
+            </ul>
+          </div>
+          <!--end login dropdown-->
+        </ul>
+      </div><!-- /.navbar-collapse -->
+  </nav>
 </body>
 <!---------------------------------------------------------------------------------------------->
 
@@ -161,12 +147,27 @@ function saveCountry(){
 </template>
 
 <template name="world">
-  <h1>world page</h1>
+  <div style="background-color:#A75050">
+    <div id="instafeed">
+      <div id="titlebox">
+        <h1 style ="padding:20px 0px 0px 0px; font-weight:lighter; color:white">Around the World</h1>
+        <h3>Pictures Corresponding to Top Hashtags Around the World</h3>
+      </div>
+    </div>
+  </div>
 </template>
 <!---------------------------------------------------------------------------------------------->
 
 <template name="saved">
-  <h1>saved page</h1>
+  <div style="background-color:#A75050; height:100%">
+    <div id="instafeed">
+      <div id="titlebox">
+        <h1 style ="padding:20px 0px 0px 0px; font-weight:lighter; color:white">Your Saved Countries</h1>
+   
+        <h4>Add or Remove Your Favorite Countries by Searching For Them</h4>
+      </div>
+    </div>
+  </div>
 </template>	
 
 <!---------------------------------------------------------------------------------------------->
@@ -204,14 +205,14 @@ function saveCountry(){
 </template>
 
 <template name="countryTemplate" id="countryTemplateID">
-  <div id="startpage">
-  <div id="instafeed">
-    <div id="titlebox">
-      <h1 id="countryName">{{specificCountry}}</h1>
-      <h2 id="countryHashtag"></h2>
-      <button type="button" onclick="saveCountry()" id="saveCountryButton">{{saveCountry}}</button>
+  <div style="background-color:#A75050">
+    <div id="instafeed">
+      <div id="titlebox">
+        <h1 id="countryName" style ="padding:20px 0px 0px 0px; font-weight:lighter; color:white">{{specificCountry}}</h1>
+        <h2 id="countryHashtag"></h2>
+        <button type="button" onclick="saveCountry()" id="saveCountryButton">{{saveCountry}}</button>
+      </div>
     </div>
-  </div>
   </div>
 </template>
 

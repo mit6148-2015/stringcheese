@@ -16,8 +16,9 @@ padding-bottom: 10px;
 
 /*NAVIGATION BAR*/
 nav{
-	background-color: #A75050;
+	background-color: rgba(167,80,80,0.75);
 }
+
 #globaltrends { 
   padding-top: 20px;
   color:white; 
@@ -51,7 +52,7 @@ nav{
 	position: absolute;
 	top: 0px;
 	left: 0px;
-	background-color:  #A75050; /* background of first page */
+	background-color: #A75050; /* background of first page */
   background-attachment: scroll;
 	z-index: 1;
 	

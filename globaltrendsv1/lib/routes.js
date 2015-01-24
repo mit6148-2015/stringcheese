@@ -1,8 +1,5 @@
 Router.route('/country/:country', function() {
 	var country = this.params.country;
-
-
-
 	Meteor.call("getAllCountries", function(err, result){
       var temp = JSON.parse(result);
 
