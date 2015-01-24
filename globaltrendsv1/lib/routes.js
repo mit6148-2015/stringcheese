@@ -10,7 +10,13 @@ Router.route('/country/:country', function() {
 		if(err){
 			console.log("Error: "+ err);
 		}else{
-			$("#saveCountryButton").html(result);
+			if(result===null){
+				//hide button
+			  $("#saveCountryButton").hide();
+			}else{
+			  $("#saveCountryButton").show();
+			  $("#saveCountryButton").html(result);
+			}
 		}
 	});
 	this.render('countryTemplate', {

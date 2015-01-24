@@ -111,6 +111,7 @@ Meteor.methods({
     console.log("hashtag: "+ temp[0].hashtag);
     return JSON.stringify(temp[0].hashtag);
   },
+
   getAllCountries: function(){
     var temp=[];
     for(var i =0; i < 13; i++){
@@ -182,18 +183,32 @@ Meteor.methods({
     }, //close updateCountries
 
     getSavedState: function(country){
+      if(Meteor.user()===null){
+        return null;
+      }else{
+        var userID = Meteor.user()._id;
+        var num = Meteor.users.find({$and: [{_id : userID}, {countries: {$exists: true}}]}).count();
+        if(num===0){
+          return "Save Country";
+        }else{
+          var countryArray = Meteor.users.find({_id: userID}).fetch()[0].countries;
+          for(var i = 0; i<countryArray.length; i++){
+            if(countryArray[i]===country){
+              return "Remove Country";
+            }
+          }
+          return "Save Country";
+        }
+      }
+    },
+    getUserSavedCountries: function(){
       var userID = Meteor.user()._id;
       var num = Meteor.users.find({$and: [{_id : userID}, {countries: {$exists: true}}]}).count();
       if(num===0){
-        return "Save Country";
+        return JSON.stringify([]);
       }else{
         var countryArray = Meteor.users.find({_id: userID}).fetch()[0].countries;
-        for(var i = 0; i<countryArray.length; i++){
-          if(countryArray[i]===country){
-            return "Remove Country";
-          }
-        }
-        return "Save Country";
+        return JSON.stringify(countryArray);
       }
     }
 }); //Meteor.methods

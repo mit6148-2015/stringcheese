@@ -16,19 +16,29 @@ Template.countryTemplate.rendered = function(){
 
     console.log("the result: " + theHashTag);
 
-    var feed = new Instafeed({
-    clientId: '356506ebf9c442bea6bd28d6a368ba9a',
-    //tags
-    get: 'tagged',
-    // tagName: 'mit', 
-    tagName: theHashTag,
-    // get:'location',
-    // locationId: '',
-    sortBy: 'most-recent',
-    limit: 20, //shows 5 images at most, for now
-    template: '<article><div id="instagram_container"><a href="{{link}}"><img id="instaimage" src="{{image}}" /></a><textarea id="instabox">{{caption}}}</textarea></div></article>',
-    });
-    feed.run();
+
+    Meteor.call("getUserSavedCountries", function(err, result){
+
+      if(err){
+        console.log("Error in getUserSavedCountries: "+ err)
+      }else{
+        var countries = JSON.parse(result); //contains all countries the user has saved
+
+        var feed = new Instafeed({
+        clientId: '356506ebf9c442bea6bd28d6a368ba9a',
+        //tags
+        get: 'tagged',
+        // tagName: 'mit', 
+        tagName: theHashTag,
+        // get:'location',
+        // locationId: '',
+        sortBy: 'most-recent',
+        limit: 20, //shows 5 images at most, for now
+        template: '<article><div id="instagram_container"><a href="{{link}}"><img id="instaimage" src="{{image}}" /></a><textarea id="instabox">{{caption}}}</textarea></div></article>',
+        });
+        feed.run();
+      }
+   });
   });
 };
 
