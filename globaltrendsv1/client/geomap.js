@@ -30,27 +30,15 @@ Template.map.rendered = function(){
   function drawMap() {
     var data = google.visualization.arrayToDataTable(mapInfo);
 
-
-  var options = {
-      width: 834,
-      height: 600,
-      dataMode: 'regions',
-      backgroundColor: '#FFF',/*'#A4F3F3', /* light blue */
-      keepAspectRatio: true,
-      width: $(window).width(),
-      datalessRegionColor: '#408640' /* green */
-  };
-  options['colors']=['#FF7260','#FFD800'];
     var options = {
         width: 834,
         height: 650,
         dataMode: 'regions',
-        backgroundColor: '#129793', /* light blue */
+        backgroundColor: '#FFF', /* light blue */
         keepAspectRatio: true,
         width: $(window).width(),
-        datalessRegionColor: '#408640' /* green */
+        datalessRegionColor: '#F1F1F1' /* green */
     };
-    options['colors']=['#FF7260','#FFD800'];
 
     var container = document.getElementById('regions_div');
     //if(container!=null){
