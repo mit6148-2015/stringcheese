@@ -29,16 +29,30 @@
   });
 
   function getCountrySearchInput(){
-    var country = $('#searchText').val();
-    console.log(country);
-    
-    window.location.assign("/country/" + country);
+    var tempCountry = $('#searchText').val();
+    var country = tempCountry.toTitleCase();
+    console.log("COUNTRY: "+ country);
+  
+    Meteor.call("getAllCountries", function(err, result){
+      var temp = JSON.parse(result);
+      // console.log("WHAT ARE THE COUNTRIES? " + temp);
+      // console.log("WHAT ARE THE COUNTRIES? " + temp[0]);
+
+      var inDatabase = false;
+
+      for(var i=0; i<13;i++){
+        if(country===temp[i]){
+          inDatabase = true;
+        }
+      }
+
+      if(inDatabase){
+        window.location.assign("/country/" + country);
+      } else {
+        alert("Please enter one of these countries: "+ temp);
+      }
+    });
   };
-
-  function getUserInfo() {
-    var username = $('')
-  }
-
 
 function saveCountry(){
   console.log("in saveCountry");
@@ -50,12 +64,12 @@ function saveCountry(){
     if(err){
     console.log("Error in updateCountries: "+err);
     }else{
-    console.log("Result of updateCountries: "+result);
-    if(result){ //if true than set button to "remove country"
-      $('#saveCountryButton').html("Remove Country");
-    }else{ //if false then set button to "save country"
-      $('#saveCountryButton').html("Save Country");
-    }
+      console.log("Result of updateCountries: "+result);
+      if(result){ //if true than set button to "remove country"
+        $('#saveCountryButton').html("Remove Country");
+      }else{ //if false then set button to "save country"
+        $('#saveCountryButton').html("Save Country");
+      }
     }
   });
 

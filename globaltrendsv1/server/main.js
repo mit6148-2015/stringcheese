@@ -111,7 +111,17 @@ Meteor.methods({
     console.log("hashtag: "+ temp[0].hashtag);
     return JSON.stringify(temp[0].hashtag);
   },
-updateCountries: function(country){
+  getAllCountries: function(){
+    var temp=[];
+    for(var i =0; i < 13; i++){
+      temp.push(Countries.find().fetch()[i].name);
+    }
+    console.log("ARRAY OF COUNTRIES: " + temp);
+    return JSON.stringify(temp);
+    // return Countries.count();
+  },
+
+  updateCountries: function(country){
     var removeCountry;
     console.log("in updateCountries");
     //var userAddress = Meteor.user().emails[0].address; //get email address of logged in user
@@ -170,7 +180,6 @@ updateCountries: function(country){
     }
       return removeCountry;
     }, //close updateCountries
-
 
     getSavedState: function(country){
       var userID = Meteor.user()._id;
