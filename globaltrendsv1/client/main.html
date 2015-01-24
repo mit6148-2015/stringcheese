@@ -27,6 +27,11 @@
       return true; //letting any letter pass
     });
   });
+ function stayOpen() {
+    $('.dropdown-menu input').click(function (event) {
+                event.stopPropagation();
+            });
+}
 
   function getCountrySearchInput(){
     var tempCountry = $('#searchText').val();
@@ -80,45 +85,33 @@ function saveCountry(){
 </head>
 
 <body>
-
-    <nav class="navbar navbar-fixed-top">
-        <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="{{pathFor 'map'}}" id="globaltrends">gTrends</a>
-        </div>
-          <!-- Search bar-->
-            <form class="navbar-form navbar-left" role="search">
-            <div class="input-group input-group-sm">
-              <input type="text" class="form-control" placeholder="Search" id="searchText">
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-default input-group-addon" id="searchbutton" onclick="getCountrySearchInput()">
-                    <span class="glyphicon glyphicon-search"></span>
-                </button>
-            </span>
-            </div>
-          </form>
-
-          <!-- <ul class ="nav navbar-nav navbar-right"> -->
-            
-
-<!--             <div id="login-screen" style="color:white">
-              {{>loginButtons}}
-
-            </div> -->
-          <!-- </ul> -->
-
-
-          <ul class="nav navbar-nav navbar-right">
-            {{#if currentUser}}
-            <a href="{{pathFor 'map'}}" style="font-weight:lighter">
-              <button type="button" class="btn btn-info outline">World</button></a>
-            <a href="{{pathFor 'selected'}}" style="font-weight:lighter">
-              <button type="button" class="btn btn-success outline">Selected</button></a>
-            <a href="{{pathFor 'local'}}" style="font-weight:lighter">
-              <button type="button" class="btn btn-warning outline">Local</button></a>
-              <!--this is the login dropdown-->
+  <nav class="navbar navbar-fixed-top">
+      <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="{{pathFor 'home'}}" id="globaltrends">gTrends</a>
+      </div>
+        <!-- Search bar-->
+          <form class="navbar-form navbar-left" role="search">
+          <div class="input-group input-group-sm">
+            <input type="text" class="form-control" placeholder="Search" id="searchText">
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default input-group-addon" id="searchbutton" onclick="getCountrySearchInput()">
+                  <span class="glyphicon glyphicon-search"></span>
+              </button>
+          </span>
+          </div>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+          {{#if currentUser}}
+          <a href="{{pathFor 'map'}}" style="font-weight:lighter">
+            <button type="button" class="btn btn-info outline">Map</button></a>
+          <a href="{{pathFor 'world'}}" style="font-weight:lighter">
+            <button type="button" class="btn btn-success outline">World</button></a>
+          <a href="{{pathFor 'saved'}}" style="font-weight:lighter">
+            <button type="button" class="btn btn-warning outline">Saved</button></a>
             {{/if}}
-            <div class="btn-group">
+            <!--this is the login dropdown-->
+          <div class="btn-group">
               {{#unless currentUser}}
               <button type="button" class="btn btn-info outline dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="loginButton">
                 login <span class="caret"></span>
@@ -134,63 +127,29 @@ function saveCountry(){
               <!-- <button type="button" class="btn btn-info outline" aria-expanded="false" id="signOut"> sign out </button> -->
               {{/if}}
             </div>
-
-            <!--end login dropdown-->
-          </ul>
-        </div><!-- /.navbar-collapse -->
-    </nav>
-
-
-     <!-- <div class="navbar-collapse collapse">
-        <div class="navbar-right">
-            <div class="btn-group">
-                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-                    Login <span class="caret"></span>
-                </button>
-                <div class="dropdown-menu" >
-                    <div class="col-sm-12">
-                        <div class="col-sm-12">
-                            Login
-                        </div>
-                        <div class="col-sm-12">
-                            <input type="text" placeholder="Uname or Email" onclick="return false;" class="form-control input-sm" id="inputError" />
-                        </div>
-                        <br/>
-                        <div class="col-sm-12">
-                            <input type="password" placeholder="Password" class="form-control input-sm" name="password" id="Password1" />
-                        </div>
-                        <div class="col-sm-12">
-                            <button type="submit" class="btn btn-success btn-sm">Sign in</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
- -->
-
+          <!--end login dropdown-->
+        </ul>
+      </div><!-- /.navbar-collapse -->
+  </nav>
 </body>
 <!---------------------------------------------------------------------------------------------->
 
-<template name="map">
+<template name="home">
    <div id ="startpage" class="container-fluid">
     
-      <div id="map-blurb"><h1 style="padding: 70px 0px 0px 70px; font-weight:lighter; color:white; letter-spacing: 1px"> what's trending today? </h1>
+      <div id="map-blurb"><h1 style="padding: 100px 0px 0px 70px; font-weight:lighter; color:white; letter-spacing: 1px"> what's trending today? </h1>
       </div>
 
-<!-- {{>login}}  -->
-<!-- {{>register}} -->
-{{>main}}
-<!-- testing -->
+      <!-- {{>login}}  -->
+      <!-- {{>register}} -->
+      {{>main}}
+      <!-- testing -->
 
  
       <div id="scroll" class ="container-fluid">
       
       <div class ="first segment container-fluid">
-        <div id="map-blurb"><h1 style="padding: 30px 0px 0px 30px; font-weight:lighter; color: #A75050; letter-spacing: 1px"> what's trending today? </h1>
-      </div>
-
-        <div id="regions_div"></div> 
+        <div>{{>map}}</div> 
       </div> <!--end first segment container-fluid -->
 
       <div class ="second segment container-fluid">
@@ -202,52 +161,43 @@ function saveCountry(){
 </template>
 
 <template name="world">
+    <div id="instafeed" style="background-color:#A75050">
+      <div id="titlebox">
+        <h1 style ="padding:20px 0px 0px 0px; font-weight:lighter; color:white">Around the World</h1>
+        <h3>Pictures Corresponding to Top Hashtags Around the World</h3>
+      </div>
+    </div>
 </template>
 <!---------------------------------------------------------------------------------------------->
 
-<template name="selected">
-
+<template name="saved">
+    <div id="instafeed" style="background-color:#A75050; min-height:700px;">
+      <div id="titlebox">
+        <h1 style ="padding:20px 0px 0px 0px; font-weight:lighter; color:white">Your Saved Countries</h1>
+        <h4>Add or Remove Your Favorite Countries by Searching For Them</h4>
+      </div>
+    </div>
 </template>	
 
 <!---------------------------------------------------------------------------------------------->
-<template name="local">
-  <h1 style="padding: 30px"> this should be the local page </h1>
+<template name="map">
+  <div class ="first segment container-fluid">
+        <div id="map-blurb"><h1 style="padding: 30px 0px 0px 30px; font-weight:lighter; color: #A75050; letter-spacing: 1px"> what's trending today? </h1>
+      </div>
+
+        <div id="regions_div"></div> 
+      </div> <!--end first segment container-fluid -->
 </template> 
 <!---------------------------------------------------------------------------------------------->
 
-<template name = "home">
-  <div id ="startpage" class="container-fluid">
-
-
-      <div id="scroll" class ="container-fluid">
-        <div class ="first segment container-fluid">
-        </div> <!--end first segment container-fluid-->
-
-        <div class ="second segment container-fluid">
-        </div>
-      </div> <!-- div scroll end -->
-
-    <div id="scroll" class ="container-fluid">
-      <div class ="first segment container-fluid">
-      </div>
-      <div class ="second segment container-fluid">
-      </div>
-
-    </div>
-  </div>
-
-</template>
-
 <template name="countryTemplate" id="countryTemplateID">
-  <div id="startpage">
-  <div id="instafeed">
-    <div id="titlebox">
-      <h1 id="countryName">{{specificCountry}}</h1>
-      <h2 id="countryHashtag"></h2>
-      <button type="button" onclick="saveCountry()" id="saveCountryButton">{{saveCountry}}</button>
+    <div id="instafeed" style="background-color:#A75050; min-height:700px;">
+      <div id="titlebox">
+        <h1 id="countryName" style ="padding:20px 0px 0px 0px; font-weight:lighter; color:white">{{specificCountry}}</h1>
+        <h2 id="countryHashtag"></h2>
+        <button type="button" onclick="saveCountry()" id="saveCountryButton">{{saveCountry}}</button>
+      </div>
     </div>
-  </div>
-  </div>
 </template>
 
 <!-- LOGIN SHIT THIS BETTER WORK -->

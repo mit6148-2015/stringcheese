@@ -1,8 +1,5 @@
 Router.route('/country/:country', function() {
 	var country = this.params.country;
-
-
-
 	Meteor.call("getAllCountries", function(err, result){
       var temp = JSON.parse(result);
 
@@ -61,11 +58,10 @@ Router.configure({
   // }
 });
 Router.map(function(){
-  this.route('map', {path: '/'} );
+  this.route('home', {path: '/', loadingTemplate: 'loading'} );
   this.route('world', {path: '/world'});
-  this.route('selected', {path: '/selected'});
-  this.route('local', {path: '/local'});
-  this.route('home', {path: '/home'} );
+  this.route('saved', {path: '/saved'});
+  this.route('map', {path: '/map'});
   this.route('notFound', {path: '/notFound'});
  // this.route('notFound', {path: '*' });
 });

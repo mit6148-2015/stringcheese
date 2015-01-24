@@ -3,79 +3,14 @@ if (Meteor.isClient) {
   passwordSignupFields: "USERNAME_ONLY"
   });
 
- //  Meteor.setInterval(function(){
- //  	Meteor.call("connectTwitter",function(err, result){
- //    console.log(result);
- //    });
-	// },1200000);
+  Meteor.setInterval(function(){
+  	Meteor.call("connectTwitter",function(err, result){
+    console.log(result);
+    });
+	},1200000);
   
 
- // Template.login.events({
-
- //    'submit #form-signin' : function(e, t){
- //      e.preventDefault();
- //      // retrieve the input field values
- //      var email = t.find('#inputEmail').value, password = t.find('#inputPassword').value;
-
- //        // Trim and validate your fields here.... 
-
- //        // If validation passes, supply the appropriate fields to the
- //        // Meteor.loginWithPassword() function.
- //        Meteor.loginWithPassword(email, password, function(err){
- //        if (err){
- //          alert("Email and password do not match. Please try again.")
- //        }
- //          // The user might not have been found, or their passwword
- //          // could be incorrect. Inform the user that their
- //          // login attempt has failed. 
- //        else {
- //          alert("Welcome" + email + "!");
- //          // The user has been logged in.
- //        }
- //      });
- //         return false; 
- //      } //end function
- //  }); //end login template
-
- // Template.register.events({
- //    'submit #register-form' : function(e, t) {
- //      e.preventDefault();
- //      var email = t.find('#account-email').value
- //        , password = t.find('#account-password').value;
-
- //        // Trim and validate the input
- //  //       var trimInput = function(val) {
- //  //   		return val.replace(/^\s*|\s*$/g, "");
- //  // 		}
- //  // 		var email = trimInput(email);
-
- //  // 		var isValidPassword = function(val) {
-	// 	//     return val.length &gt;= 6 ? true : false; 
-	// 	// }
-	// 	 //if (isValidPassword(userPassword) {
- //    		// Then use the Meteor.createUser() function
- //    		Accounts.createUser({email: email, password : password}, function(err){
-	//           if (err) {
-	//             alert("account creation failed");
-	//           } else {
-	//             // Success. Account has been created and the user
-	//             // has logged in successfully. 
-	//             alert("Account creation successful; you are now logged in");
-	//           }
-
- //        	});
- //  		//} //end isValidPassword
-
-
-
- //      return false;
- //    }
- //  }); //end register template
-
-
- /* -------------------------------------------------------------------------------- */
-
-
+ 
 Template.alert.helpers({
     alert: function() {
         return Session.get('alert');
@@ -125,6 +60,7 @@ Template.signIn.events({
         var signInForm = $(e.currentTarget),
             email = trimInput(signInForm.find('.email').val().toLowerCase()),
             password = signInForm.find('.password').val();
+        $('.btn-group').removeClass('open');
 
         if (isNotEmpty(email) && isEmail(email) && isNotEmpty(password) && isValidPassword(password)) {
             Meteor.loginWithPassword(email, password, function(err) {
@@ -187,11 +123,6 @@ areValidPasswords = function(password, confirm) {
             });
     });
 
-   function stayOpen() {
-    $('.dropdown-menu input').click(function (event) {
-                event.stopPropagation();
-            });
-}
 
 
 
