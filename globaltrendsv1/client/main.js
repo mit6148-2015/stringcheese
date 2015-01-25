@@ -36,7 +36,9 @@ Template.alert.helpers({
                         Session.set('alert', 'We\'re sorry but something went wrong.');
                     }
                 } else {
+                    window.location.assign("/map");
                     Session.set('alert', 'Congrats! You\'re now a new Meteorite!');
+                    
                 }
             });
         }
@@ -48,6 +50,7 @@ Template.signOut.events({
     'click #signOut': function(e, t) {
         Meteor.logout(function() {
             Session.set('alert', 'Bye Meteorite! Come back whenever you want!');
+            window.location.assign("/");
         });
         return false;
     }
@@ -67,7 +70,9 @@ Template.signIn.events({
                 if (err) {
                     Session.set('alert', 'We\'re sorry but these credentials are not valid.');
                 } else {
+                    window.location.assign("/map");
                     Sesson.set('alert', 'Welcome back New Meteorite!');
+                    
                 }
             });
         }
@@ -130,6 +135,25 @@ $("#signOut").hide();
 
 } //on client
 
-
-
+Template.saved.helpers({
+    savedCountriesText: function(){
+        Meteor.call("getUserSavedCountries", function(err, result){
+            if(err){
+                console.log(err);
+            }else{
+                var countries = JSON.parse(result);
+                if(countries.length===0){
+                    $('#savedCountriesText').html("You currently have no saved countries. Search for the countries you would like to save and then press \"Save Country\".");
+                }else{
+                    var temp = "";
+                    for(var i =0; i<countries.length-1; i++){
+                        temp += countries[i] + ", ";
+                    }
+                    temp += countries[countries.length-1];
+                    $('#savedCountriesText').html(temp);
+                }
+            }
+        });
+    }
+});
 
