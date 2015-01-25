@@ -5,7 +5,7 @@ Router.route('/country/:country', function() {
 
       var inDatabase = false;
 
-      for(var i=0; i<13;i++){
+      for(var i=0; i<27;i++){
         if(country===temp[i]){
           inDatabase = true;
         }

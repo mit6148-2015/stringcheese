@@ -2,12 +2,18 @@ Template.countryTemplate.rendered = function(){
   var url = document.URL;  
   var res = url.split("/");
   console.log("THIS IS THE URL: " + res[res.length-1]);
+
   if(res[res.length-1]==='United%20States'){
     var country = 'United States';
   } else if(res[res.length-1]==='South%20Africa'){
     var country = 'South Africa';
+  } else if(res[res.length-1]==='South%20Korea'){
+    var country = 'South Korea';
+  }else if(res[res.length-1]==='Saudi%20Arabia'){
+    var country = 'Saudi Arabia';
   } else {
-    var country = res[res.length-1];}
+    var country = res[res.length-1];
+  }
   //console.log("THIS IS THE URL country: " + country);
 
   Meteor.call("getHashtagName", country, function(err, result){

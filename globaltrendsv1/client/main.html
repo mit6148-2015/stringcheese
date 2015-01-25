@@ -45,7 +45,7 @@
 
       var inDatabase = false;
 
-      for(var i=0; i<13;i++){
+      for(var i=0; i<27;i++){
         if(country===temp[i]){
           inDatabase = true;
         }
@@ -380,7 +380,7 @@ function saveCountry(){
 <template name="notFound">
 <div id ="startpage" class="container-fluid">
 <h1 style="padding: 70px 0px 0px 70px; font-weight:lighter; color:white; letter-spacing: 1px">Oops! That page does not exist.</h1>
-<h2 style="padding: 70px 0px 0px 70px; font-weight:lighter; color:white; letter-spacing: 1px">Check to see if you have misspelled the URL or <a href="{{pathFor 'map'}}" style="color: #306464; font-weight:bold">click here</a> to go back to the homepage. </h2>
+<h2 style="padding: 70px 0px 0px 70px; font-weight:lighter; color:white; letter-spacing: 1px">Check to see if you have misspelled the URL or <a href="{{pathFor 'home'}}" style="color: #306464; font-weight:bold">click here</a> to go back to the homepage. </h2>
 </div>
 </template>
 

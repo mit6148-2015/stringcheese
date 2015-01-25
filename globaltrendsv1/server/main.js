@@ -15,8 +15,26 @@ if (Meteor.isServer) {
     Countries.insert({name: "Australia", id: 23424748, hashtag: null});
     Countries.insert({name: "Spain", id: 23424950, hashtag: null});
     Countries.insert({name: "Germany", id: 23424829, hashtag: null});
+    Countries.insert({name: "Netherlands", id: 23424909, hashtag: null});
 
-    Meteor.call("connectTwitter",function(err, result){
+    Countries.insert({name: "India", id: 23424848, hashtag: null});
+    Countries.insert({name: "Indonesia", id: 23424846, hashtag: null});
+    Countries.insert({name: "Philippines", id: 23424934, hashtag: null});
+    Countries.insert({name: "Turkey", id: 23424969, hashtag: null});
+    Countries.insert({name: "Colombia", id: 23424787, hashtag: null}); 
+    Countries.insert({name: "Venezuela", id: 23424982, hashtag: null});
+    Countries.insert({name: "South Korea", id: 23424868, hashtag: null}); 
+    Countries.insert({name: "Argentina", id: 23424747, hashtag: null});
+    Countries.insert({name: "Vietnam", id: 23424984, hashtag: null}); 
+    Countries.insert({name: "Malaysia", id: 23424901, hashtag: null});
+    Countries.insert({name: "Saudi Arabia", id: 23424938, hashtag: null});
+    Countries.insert({name: "Thailand", id: 23424960, hashtag: null});
+    Countries.insert({name: "Ireland", id: 23424803, hashtag: null});
+
+    Meteor.call("connectTwitter1",function(err, result){
+      console.log(result);
+    });
+    Meteor.call("connectTwitter2",function(err, result){
       console.log(result);
     });
     }
@@ -24,8 +42,8 @@ if (Meteor.isServer) {
 
 
 
-   var countryIDList = [23424853, 23424977, 23424775, 23424768, 23424856, 23424910, 23424936, 23424740, 23424900, 23424942, 23424748, 23424950, 23424829];
-
+   var countryIDList1 = [23424853, 23424977, 23424775, 23424768, 23424856, 23424910, 23424936, 23424740, 23424900, 23424942, 23424748, 23424950, 23424829, 23424909];
+   var countryIDList2 = [23424848, 23424846, 23424934, 23424969, 23424787, 23424982, 23424868, 23424747, 23424984, 23424901, 23424938, 23424960, 23424803];
 
    Countries = new Mongo.Collection("countries");
    //  Countries.insert({name: "Italy", id: 23424853, hashtag: null});
@@ -44,42 +62,25 @@ if (Meteor.isServer) {
    //  Countries.insert({name: "Spain", id: 23424950, hashtag: null});
    //  Countries.insert({name: "Germany", id: 23424829, hashtag: null});
 
-    // Usernames = new Mongo.Collection("usernames");
-    //   listUsers = Meteor.users.find().fetch();
-    //   for(i=0; i<listUsers.length; i++) {
-    //     Usernames.insert({userId: "Meteor.userId()"});
-    //     //console.log(listUsers);
-    //     //listUsers.splice(i, 1);
-    //   };
-
-    // Usernames = new Mongo.Collection("usernames");
-    // Accounts.onCreateUser(function(options, user) {
-
-    // if (options.profile) {
-    //   user.profile = options.profile;
-    //   Usernames.insert(Meteor.user().username);
-    //   console.log(Meteor.user().username);
-    //   return user;
-    //   }
-    // });
-
 
 Meteor.methods({
- connectTwitter: function() {
+ connectTwitter1: function() {
 
     var twit = new TwitMaker({
-        // consumer_key: 'ES5GaX3Hd004VOryTvj6dBvxJ',
-        // consumer_secret: '2wmBCpzUslGrB9cOE1XSfneJR9Uw4q8LdTz56hMSug3AiobD7T',
-        // access_token: '2967109342-5juDANOJFAd1Ib9MzjRwOruLnHW3Lv4agitJaPC',
-        // access_token_secret: 'qErlkWRnvM2diQkmg1SlBzOF1IINy1uZxDfvc6kVm12TF'
+        consumer_key: 'ES5GaX3Hd004VOryTvj6dBvxJ',
+        consumer_secret: '2wmBCpzUslGrB9cOE1XSfneJR9Uw4q8LdTz56hMSug3AiobD7T',
+        access_token: '2967109342-5juDANOJFAd1Ib9MzjRwOruLnHW3Lv4agitJaPC',
+        access_token_secret: 'qErlkWRnvM2diQkmg1SlBzOF1IINy1uZxDfvc6kVm12TF'
 
-        consumer_key: '0PvZ5l8rtE36uokYn63f7NH6B',
-        consumer_secret: 'onFHlgJ5Om6jVaGd1Bwdg234X8smxD2OQTDJg2RIjU7OAmGIfD',
-        access_token: '2981621259-gQLus7QkNolFxs6HtedqPEDv8wopAGwgTREwAsN',
-        access_token_secret: 'cGqjr7bfbkQ5exMw0X0OG68wkeKhMzhibSoZa7EEphoCP'
+//         consumer_key: '0PvZ5l8rtE36uokYn63f7NH6B',
+//         consumer_secret: 'onFHlgJ5Om6jVaGd1Bwdg234X8smxD2OQTDJg2RIjU7OAmGIfD',
+//         access_token: '2981621259-gQLus7QkNolFxs6HtedqPEDv8wopAGwgTREwAsN',
+//         access_token_secret: 'cGqjr7bfbkQ5exMw0X0OG68wkeKhMzhibSoZa7EEphoCP'
+
+
     });
 
-      countryIDList.forEach(function(countryID) {
+      countryIDList1.forEach(function(countryID) {
         twit.get('trends/place',{id: countryID}, Meteor.bindEnvironment(function(err, data, response) {
           if(err===null){
             Countries.update({id: countryID}, {$set: {hashtag: data[0].trends[0].name}}, function(err, doc){
@@ -100,6 +101,46 @@ Meteor.methods({
            }));
       });
   }, //connectTwitter
+  connectTwitter2: function() {
+
+    var twit = new TwitMaker({
+        // consumer_key: 'ES5GaX3Hd004VOryTvj6dBvxJ',
+        // consumer_secret: '2wmBCpzUslGrB9cOE1XSfneJR9Uw4q8LdTz56hMSug3AiobD7T',
+        // access_token: '2967109342-5juDANOJFAd1Ib9MzjRwOruLnHW3Lv4agitJaPC',
+        // access_token_secret: 'qErlkWRnvM2diQkmg1SlBzOF1IINy1uZxDfvc6kVm12TF'
+
+//         consumer_key: '0PvZ5l8rtE36uokYn63f7NH6B',
+//         consumer_secret: 'onFHlgJ5Om6jVaGd1Bwdg234X8smxD2OQTDJg2RIjU7OAmGIfD',
+//         access_token: '2981621259-gQLus7QkNolFxs6HtedqPEDv8wopAGwgTREwAsN',
+//         access_token_secret: 'cGqjr7bfbkQ5exMw0X0OG68wkeKhMzhibSoZa7EEphoCP'
+
+        consumer_key: 'V6pV7WkzMJDPT2smxEAJGJQXM',
+        consumer_secret: 'AEu10XYgK3RftfRvDGdwVnlbfxEuAgOWewcqeCt4uFZKSbyakQ',
+        access_token: '2966838142-M97BaLp0xIIeg1oNoxuuDGWm9k3N6J5xyOZh0Em',
+        access_token_secret: 'AifnQUfQRVQmfKluUFCim36iQDh28uQgB3St7HlBidGx4'
+    });
+
+      countryIDList2.forEach(function(countryID) {
+        twit.get('trends/place',{id: countryID}, Meteor.bindEnvironment(function(err, data, response) {
+          if(err===null){
+            Countries.update({id: countryID}, {$set: {hashtag: data[0].trends[0].name}}, function(err, doc){
+              if (err) {
+                console.log(err);
+              }
+              else {
+                console.log("updated the hashtag");
+              }
+            });
+          console.log(": "+data[0].trends[0].name);
+        }else{
+          console.log("Error: "+ err);
+          }
+        },
+           function(e) {
+            console.log("Error in Meteor.bindEnvironment");
+           }));
+      });
+  }, //connectTwitter2
   
   getHashtag: function (countryID) {
     var temp = Countries.find({id: countryID}).fetch();
@@ -114,7 +155,7 @@ Meteor.methods({
 
   getAllCountries: function(){
     var temp=[];
-    for(var i =0; i < 13; i++){
+    for(var i =0; i < 27; i++){
       temp.push(Countries.find().fetch()[i].name);
     }
     console.log("ARRAY OF COUNTRIES: " + temp);

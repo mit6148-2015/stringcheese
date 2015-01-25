@@ -4,7 +4,10 @@ if (Meteor.isClient) {
   });
 
   Meteor.setInterval(function(){
-  	Meteor.call("connectTwitter",function(err, result){
+  	Meteor.call("connectTwitter1",function(err, result){
+    console.log(result);
+    });
+    Meteor.call("connectTwitter2",function(err, result){
     console.log(result);
     });
 	},1200000);
