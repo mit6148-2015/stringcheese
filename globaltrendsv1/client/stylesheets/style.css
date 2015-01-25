@@ -269,3 +269,13 @@ border-radius: 4px;
 .form-control .email {
   font-size: 10px;
 }
+
+.photosContainer{
+    width: 200px;
+    height: 120px;
+}
+
+.photosContainer img{
+    width: 100%;
+    height: auto;
+}
