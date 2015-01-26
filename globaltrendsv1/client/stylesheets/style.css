@@ -178,6 +178,40 @@ nav{
 
 /*login: */
 
+#signUpBox{
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.input-group  input[type=text]{
+  width: 250px;
+  height: 30px;
+  background: transparent;
+  border: 2px solid rgba(255,255,255,0.6);
+  border-radius: 2px;
+  color: #fff;
+  font-family: 'Exo', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 4px;
+
+}
+
+
+.input-group  input[type=password]{
+  width: 250px;
+  height: 30px;
+  background: transparent;
+  border: 2px solid rgba(255,255,255,0.6);
+  border-radius: 2px;
+  color: #fff;
+  font-family: 'Exo', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 4px;
+  margin-top: 10px;
+}
+
 .form-signin {
   /*width: 500px;*/
   padding: 20px;
@@ -227,9 +261,17 @@ nav{
   border-top-right-radius: 0;
 }
 
+#last_page_header{
+  padding: 100px 70px 15px 70px; 
+  font-weight:lighter; 
+  color:white; 
+  font-size: 500%; 
+  text-align: center;
+}
 
-
-.login_shit {
+.outer_login {
+  position: absolute;
+  padding-top: 45px;
   margin-left: auto;
   margin-right: auto;
 }

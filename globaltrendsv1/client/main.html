@@ -153,7 +153,7 @@ function saveCountry(){
       </div> <!--end first segment container-fluid -->
 
       <div class ="second segment container-fluid">
-        <h1 style="padding: 100px 70px 0px 70px; font-weight:lighter; color:white; letter-spacing: 1px; font-size: 600%; text-align: center"> Keep up to date on social news!</h1>
+        <p id="last_page_header"> Keep up to date on social news!</p>
         <h3 style="padding: 10px 70px 0px 70px; font-weight:lighter; color:white; letter-spacing: 1px; text-align: center; line-height: 150%">Mouse over the map to view the top hashtag trending on Twitter from that country.  Then click on the country to see the pictures from Instagram corresponding to that tag.  Login to save and then easily access your favorite countries!</h3>
         <div id="photosAndCaptions" style="position: absolute; bottom: 0; margin-left: 50%; margin-right: -50%; transform: translate(-50%, 0%)">
           <h4 style="padding: 190px 70px 0px 70px; font-weight:lighter; color:white; letter-spacing: 1px; text-align: center; line-height: 150%">Questions or Comments? Contact us!</h4>
@@ -323,16 +323,16 @@ function saveCountry(){
 
 
 <template name="signUp">
-    <div class="sign-up login_shit container" style="position:fixed; top:30px">
-      <div class="input-group input-group-lg" >
-        <form action="/sign-up" class="sign-up-form form-signin" id="signUpForm" method="post" style="margin: 150px 0px 0px 450px">
+    <div class="sign-up outer_login container">
+      <div class="input-group input-group-lg" id="signUpBox">
+        <form action="/sign-up" class="sign-up-form form-signin" id="signUpForm" method="post">
           <h2 class="form-signin-heading" style="text-align:center; color:white; font-weight: lighter">gTrends</h2>
-          <p class="form-signin-heading" style="text-align:center; color:white; font-weight:lighter; letter-spacing:.5px">See what's trending around the world. Follow your favorite places.</p>
+          <p class="form-signin-heading" style="text-align:center; color:white; font-weight:lighter; letter-spacing:.5px">See what's trending around the world.<br> Follow your favorite places.</p>
 
           <div class="input-group input-group-sm" style="margin-bottom:20px">
-            <input class="form-control email" id="signUpEmail" name="email" placeholder="Email Address" type="text" style="text-align:center;">
-            <input class="form-control password" id="signUpPassword" name="password" placeholder="Password" type="password" style="text-align:center;">
-            <button class="btn btn-lg btn-info outline btn-submit" type="submit" id="signInButton" style="margin-left: 50px">Create Account</button>
+            <input class="form-control email" id="signUpEmail" name="email" placeholder="Email Address" type="text" style="text-align:center"><br>
+            <input class="form-control password" id="signUpPassword" name="password" placeholder="Password" type="password" style="text-align:center"><br>
+            <button class="btn btn-lg btn-info outline btn-submit" type="submit" id="signInButton" style="margin-left: 50px">Create Account</button><br>
 
           </div>
         </form>
