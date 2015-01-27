@@ -7,7 +7,7 @@ Template.map.rendered = function(){
   var countryHashtag = [];
 
   function getHashtagFromDB(){
-    setTimeout(createMap, 1000);
+    setTimeout(pause, 500);
     countryIDList.forEach(function(countryID){
         Meteor.apply("getHashtag", [EJSON.parse(countryID)], [true], function(err, result){
           // console.log("Error: " + err);
@@ -19,7 +19,41 @@ Template.map.rendered = function(){
 
   getHashtagFromDB();
 
+  function pause(){
+    console.log("pause");
+    if(countryHashtag.length != 27){
+      setTimeout(pauseAgain, 500);
+    }else{
+      createMap();
+    }
+  }
 
+  function pauseAgain(){
+    console.log("pauseAgain");
+    if(countryHashtag.length != 27){
+      setTimeout(pauseAgainAgain, 500);
+    }else{
+      createMap();
+    }
+  }
+
+  function pauseAgainAgain(){
+    console.log("pauseAgainAgain");
+    if(countryHashtag.length != 27){
+      setTimeout(pauseAgainAgainAgain, 500);
+    }else{
+      createMap();
+    }
+  }
+
+  function pauseAgainAgainAgain(){
+    console.log("pauseAgainAgainAgain");
+    if(countryHashtag.length != 27){
+      setTimeout(createMap, 500);
+    }else{
+      createMap();
+    }
+  }
   var mapInfo = [['Country', 'hashtag']];
   function createMap(){
     for(var i =0; i<countryList.length; i++){
