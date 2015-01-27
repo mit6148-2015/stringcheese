@@ -47,6 +47,10 @@ nav{
     font-weight:lighter;
 }
 
+.btn.outline btn-submit{
+    color:black;
+}
+
 #signOut {
   margin-top: 5px;
 }

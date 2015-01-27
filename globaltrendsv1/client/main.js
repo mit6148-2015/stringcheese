@@ -32,14 +32,18 @@ Template.alert.helpers({
             password = signUpForm.find('#signUpPassword').val();
             //passwordConfirm = signUpForm.find('#signUpPasswordConfirm').val();
 
-        if (isNotEmpty(email) && isNotEmpty(password) && isEmail(email) ) {
+        if (isNotEmpty(email) && isNotEmpty(password) && isEmail(email) && isValidPassword(password)) {
         	//&& areValidPasswords(password, passwordConfirm)
             Accounts.createUser({email: email, password: password}, function(err) {
                 if (err) {
                     if (err.message === 'Email already exists. [403]') {
                         Session.set('alert', 'We\'re sorry but this email is already used.');
+                          $('#password_error').text("We\'re sorry but this email is already used.");
+                          $('#password_error').css({"display":"block"});
                     } else {
                         Session.set('alert', 'We\'re sorry but something went wrong.');
+                          $('#password_error').text("We\'re sorry but something went wrong.");
+                          $('#password_error').css({"display":"block"});
                     }
                 } else {
                     window.location.assign("/map");
@@ -47,6 +51,12 @@ Template.alert.helpers({
                     
                 }
             });
+        }else if((! isEmail(email) )|| (! isNotEmpty(email))) {
+            $('#password_error').text("Please enter a valid email.");
+            $('#password_error').css({"display":"block"});
+        }else if((! isValidPassword(password) )|| (! isNotEmpty(password))){
+            $('#password_error').text("Passwords must be at least 6 characters.");
+            $('#password_error').css({"display":"block"});
         }
         return false;
     },
