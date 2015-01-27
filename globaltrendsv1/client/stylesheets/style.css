@@ -29,7 +29,6 @@ nav{
 /*NAV BAR BUTTONS*/
 .btn {
     border: 0 none;
-    /*font-weight: bolder;*/
     letter-spacing: 1px;
     text-transform: uppercase;
 }
@@ -265,16 +264,14 @@ nav{
   padding: 100px 70px 15px 70px; 
   font-weight:lighter; 
   color:white; 
-  font-size: 500%; 
+  font-size:4em;
   text-align: center;
 }
 
-.outer_login {
-  position: absolute;
+#outer_login {
   width: 100%;
+  position: absolute;
   padding-top: 45px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .alert {

@@ -319,16 +319,16 @@ function saveCountry(){
 
 
 <template name="signUp">
-    <div class="sign-up outer_login container">
+    <div id = "outer_login" class="sign-up container">
       <div class="input-group input-group-lg" id="signUpBox">
         <form action="/sign-up" class="sign-up-form form-signin" id="signUpForm" method="post">
           <h2 class="form-signin-heading" style="text-align:center; color:white; font-weight: lighter">gTrends</h2>
           <p class="form-signin-heading" style="text-align:center; color:white; font-weight:lighter; letter-spacing:.5px">See what's trending around the world.<br> Follow your favorite places.</p>
 
-          <div class="input-group input-group-sm" style="margin-bottom:20px">
+          <div class="input-group input-group-sm" style="margin-bottom:20px; text-align:center">
             <input class="form-control email" id="signUpEmail" name="email" placeholder="Email Address" type="text" style="text-align:center"><br>
             <input class="form-control password" id="signUpPassword" name="password" placeholder="Password" type="password" style="text-align:center"><br>
-            <button class="btn btn-lg btn-info outline btn-submit" type="submit" id="signInButton" style="margin-left: 50px">Create Account</button><br>
+            <button class="btn btn-lg btn-info outline btn-submit" type="submit" id="signInButton">Create Account</button><br>
 
           </div>
         </form>
