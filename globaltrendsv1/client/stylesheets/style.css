@@ -14,6 +14,10 @@
   width: 100%;
 }
 
+body{
+  font-family: 'Lato', sans-serif;
+}
+
 /*NAVIGATION BAR*/
 nav{
 	background-color: rgba(167,80,80,0.75);
@@ -264,8 +268,19 @@ nav{
   padding: 100px 70px 15px 70px; 
   font-weight:lighter; 
   color:white; 
-  font-size:4em;
+  /*font-size: 50px;*/
+  font-size: 4em;
   text-align: center;
+}
+
+.second #description{
+  padding: 10px 70px 0px 70px; 
+  font-weight:lighter; 
+  color:white; 
+  letter-spacing: 1px; 
+  text-align: center; 
+  line-height: 150%;
+  font-size: 1.8em;
 }
 
 #outer_login {
