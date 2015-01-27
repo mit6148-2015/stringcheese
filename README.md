@@ -1,14 +1,24 @@
-# stringcheese
-a project on displaying trending instagram hashtags
+# Team: String cheese
+A project that finds the top trending hashtags on twitter and displays the instagram photos that correspond, by country.
 
 ##Current Functons:
-1. Display map with top hashtags when hovering (in order for the hashtags to work, you need to refresh the page -- need to fix this)
-2. When clicking on a country on the map or searching for a country it goes to a page that displays that countries photos from instagram that are tagged with the top hashtag.  The country displays correctly but the hashtag is currently hardcoded so we need to fix this by getting the correct hashtag from the database.
-3. Login works.
+1. When hovering over the map, the top hashtag trending in the country displays. 
+2. When clicking on a country on the map or searching for a country it goes to a page that displays the photos from instagram corresponding to that hashtag.
+3. Login 
+4. Users can save countries to their account so that they can view all the pictures from those countries under their "saved" page
+5. The world page displays all of the top hashtag photos from all around the world.
 
-###Future Functions:
-1. Update the users database so that it contains the countries they have added to their selected countries (and make the Selected Page).
-2. Make it pretty.
-3. Do the local page - get the location of the user and display the photos with the top hashtag from their area.
-4. Have the world page display all of the top hashtag photos from all around the world.
+###References
+We built our application on Meteor (https://www.meteor.com/) and used the Meteor Tutorial (https://www.meteor.com/install) and the Meteor documentation (http://docs.meteor.com/#/full/) for help.
 
+We used Bootstrap for formatting (http://getbootstrap.com/).
+
+The Map: We used the google geocharts API and code snippets from https://developers.google.com/chart/interactive/docs/gallery/geochart
+
+Login: To make the login we followed and used code snippets from this tutorial: https://waaave.com/tutorial/meteor/design-a-complete-authentication-system-with-meteor/
+
+Twitter: We used the Twitter APIs to get the top hashtags from around the country and we used Twit by ttezel found at https://atmospherejs.com/mrt/twit to interact with the Twitter API.
+
+Router: We used Iron.Router to create our routes: http://eventedmind.github.io/iron-router/
+
+Instagram: To get the pictures from instagram (http://instagram.com/developer/api-console/) we used instageed.js found at http://instafeedjs.com/ and used code from http://stackoverflow.com/questions/22901985/how-to-obtain-instagram-pictures-from-a-place-consuming-instagram-api for help.

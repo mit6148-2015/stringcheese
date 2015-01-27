@@ -64,6 +64,8 @@ if (Meteor.isServer) {
 
 
 Meteor.methods({
+  //We used Twit: https://atmospherejs.com/mrt/twit in order to access the 
+  //Twitter API's
  connectTwitter1: function() {
 
     var twit = new TwitMaker({

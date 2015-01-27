@@ -1,3 +1,6 @@
+
+//We used the google geocharts API and code snippets from 
+//https://developers.google.com/chart/interactive/docs/gallery/geochart
 Template.map.rendered = function(){
   var countryIDList = ["23424853", "23424977", "23424775", "23424768", "23424856", "23424910", "23424936", "23424740", "23424900", "23424942", "23424748", "23424950", "23424829", "23424909", "23424848", "23424846", "23424934", "23424969", "23424787", "23424982", "23424868", "23424747", "23424984", "23424901", "23424938", "23424960", "23424803"];
   var countryList = ['Italy', 'United States', 'Canada', 'Brazil', 'Japan', 'Norway', 'Russia', 'Algeria', 'Mexico', 'South Africa', 'Australia', 'Spain', 'Germany', 'Netherlands', 'India', 'Indonesia', 'Philippines', 'Turkey', 'Colombia', 'Venezuela', 'South Korea', 'Argentina', 'Vietnam', 'Malaysia', 'Saudi Arabia', 'Thailand', 'Ireland'];
@@ -47,8 +50,8 @@ Template.map.rendered = function(){
     google.visualization.events.addListener(chart, 'select', myClickHandler);
     chart.draw(data, options);
         
-        // alerts
-        // tells you row and column
+    //this code is modified from code found at:
+    // http://stackoverflow.com/questions/14504014/can-i-access-the-selected-data-in-a-chart
     function myClickHandler(){
       var selection = chart.getSelection();
       var message;

@@ -1,3 +1,5 @@
+
+//We used Iron:Router (http://eventedmind.github.io/iron-router/)
 Router.route('/country/:country', function() {
 	var country = this.params.country;
 	Meteor.call("getAllCountries", function(err, result){
@@ -49,14 +51,11 @@ Router.route('/country/:country', function() {
 	});
 	
 });
+
 Router.configure({
-//  layoutTemplate: 'layout',
-//  loadingTemplate: 'loading',
   notFoundTemplate: 'notFound',
-  // waitOn: function(){
-  //   return Meteor.subscribe('userData');
-  // }
 });
+
 Router.map(function(){
   this.route('home', {path: '/', loadingTemplate: 'loading'} );
   this.route('world', {path: '/world'});

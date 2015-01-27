@@ -1,3 +1,6 @@
+
+//We used Instafeed.js (http://instafeedjs.com/) and got help from:
+//http://stackoverflow.com/questions/22901985/how-to-obtain-instagram-pictures-from-a-place-consuming-instagram-api 
 Template.countryTemplate.rendered = function(){
   var url = document.URL;  
   var res = url.split("/");

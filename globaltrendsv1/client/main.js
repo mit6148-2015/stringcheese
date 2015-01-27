@@ -20,6 +20,9 @@ Template.alert.helpers({
     }
 }); //end alert template
 
+
+//In order to create the login we followed and used code snipets from
+// this tutorial: https://waaave.com/tutorial/meteor/design-a-complete-authentication-system-with-meteor/
  Template.signUp.events({
     'submit #signUpForm': function(e, t) {
         e.preventDefault();
