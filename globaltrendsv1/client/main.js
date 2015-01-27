@@ -84,13 +84,23 @@ Template.signIn.events({
         if (isNotEmpty(email) && isEmail(email) && isNotEmpty(password) && isValidPassword(password)) {
             Meteor.loginWithPassword(email, password, function(err) {
                 if (err) {
+                    $('.btn-group').addClass('open');
                     Session.set('alert', 'We\'re sorry but these credentials are not valid.');
+                    $('#login-error').text("We\'re sorry but these credentials are not valid.");
+                    $('#login-error').css({"display":"block"});
                 } else {
                     window.location.assign("/map");
                     Sesson.set('alert', 'Welcome back New Meteorite!');
-                    
                 }
             });
+        }else if(!isNotEmpty(email) || !isEmail(email)){
+             $('.btn-group').addClass('open');
+            $('#login-error').text("Invalid email.");
+            $('#login-error').css({"display":"block"});            
+        }else if(!isNotEmpty(password) || !isValidPassword(password)){
+           $('.btn-group').addClass('open');
+            $('#login-error').text("Invalid password.");
+            $('#login-error').css({"display":"block"});
         }
         return false;
     },
