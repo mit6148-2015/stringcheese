@@ -4,7 +4,7 @@
 Template.countryTemplate.rendered = function(){
   var url = document.URL;  
   var res = url.split("/");
-  console.log("THIS IS THE URL: " + res[res.length-1]);
+  //console.log("THIS IS THE URL: " + res[res.length-1]);
 
   if(res[res.length-1]==='United%20States'){
     var country = 'United States';
@@ -30,7 +30,7 @@ Template.countryTemplate.rendered = function(){
       theHashTag = theTag;
     }
 
-    console.log("the result: " + theHashTag);
+    //console.log("the result: " + theHashTag);
 
     var feed = new Instafeed({
     clientId: '356506ebf9c442bea6bd28d6a368ba9a',
