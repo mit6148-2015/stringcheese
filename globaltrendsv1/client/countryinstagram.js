@@ -20,7 +20,16 @@ Template.countryTemplate.rendered = function(){
   //console.log("THIS IS THE URL country: " + country);
 
   Meteor.call("getHashtagName", country, function(err, result){
-    var temp = result;
+    var tempArray = result.split(" ");
+    var temp = "";
+    if(tempArray.length===1){
+      temp = tempArray[0];
+    } else {
+      for(var i =0;i<tempArray.length;i++){
+        temp += tempArray[i];
+        console.log("END: "+ temp);
+      }
+    }
     var theTag = temp.substring(1,temp.length-1);
 
     //check if there's a hashtag
@@ -35,8 +44,7 @@ Template.countryTemplate.rendered = function(){
     var feed = new Instafeed({
     clientId: '356506ebf9c442bea6bd28d6a368ba9a',
     //tags
-    get: 'tagged',
-    // tagName: 'mit', 
+    get: 'tagged', 
     tagName: theHashTag,
     // get:'location',
     // locationId: '',
