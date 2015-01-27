@@ -3,6 +3,11 @@
   * Copyright © 2008–2013 David Gouch. Licensed under the MIT License.
  */
 
+
+/*
+  Using this to convert to title case
+*/
+
 String.prototype.toTitleCase = function(){
   var smallWords = /^(a|an|and|as|at|but|by|en|for|if|in|nor|of|on|or|per|the|to|vs?\.?|via)$/i;
 
