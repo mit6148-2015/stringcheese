@@ -1,87 +1,80 @@
-
+<!-- Project Made for MIT IAP 6.148/1.470
+     Created by Gracie Liu, Carissa Sun, and Rebecca Scanlon
+     Last updated: 1/26/15
+-->
 <head>
     <title>Global Trends</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
 	  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-
-    <!-- <link rel="icon" href="../../favicon.ico"> -->
-    <!-- Bootstrap core CSS -->
     <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript">
+     $(document).ready(function(){
+        $("#searchText").keypress(function(e) {
 
-    <!-- Custom styles for this template -->
-    <!-- <link href="signin.css" rel="stylesheet"> -->
-
-
-<script type="text/javascript">
- $(document).ready(function(){
-    $("#searchText").keypress(function(e) {
-
-      if(e.which == 13) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        getCountrySearchInput();
-        return false; //don't type letter
-      }
-      return true; //letting any letter pass
-    });
-  });
- function stayOpen() {
-    $('.dropdown-menu input').click(function (event) {
-                event.stopPropagation();
-            });
-}
-
-  function getCountrySearchInput(){
-    var tempCountry = $('#searchText').val();
-    var country = tempCountry.toTitleCase();
-    console.log("COUNTRY: "+ country);
-  
-    Meteor.call("getAllCountries", function(err, result){
-      var temp = JSON.parse(result);
-      // console.log("WHAT ARE THE COUNTRIES? " + temp);
-      // console.log("WHAT ARE THE COUNTRIES? " + temp[0]);
-
-      var inDatabase = false;
-
-      for(var i=0; i<27;i++){
-        if(country===temp[i]){
-          inDatabase = true;
-        }
-      }
-
-      if(inDatabase){
-        window.location.assign("/country/" + country);
-      } else {
-        alert("Please enter one of these countries: "+ temp);
-      }
-    });
-  };
-
-
-function saveCountry(){
-  console.log("in saveCountry");
-  var currentCountry = $("#countryName").text();
-  console.log("currentCountry: "+ currentCountry);
-
-  Meteor.apply("updateCountries", [currentCountry], function(err, result){
-    //do everything in server
-    if(err){
-    console.log("Error in updateCountries: "+err);
-    }else{
-      console.log("Result of updateCountries: "+result);
-      if(result){ //if true than set button to "remove country"
-        $('#saveCountryButton').html("Remove Country");
-      }else{ //if false then set button to "save country"
-        $('#saveCountryButton').html("Save Country");
-      }
+          if(e.which == 13) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            getCountrySearchInput();
+            return false; //don't type letter
+          }
+          return true; //letting any letter pass
+        });
+      });
+     function stayOpen() {
+        $('.dropdown-menu input').click(function (event) {
+                    event.stopPropagation();
+                });
     }
-  });
 
-}
-</script>
+      //only let them search for countries in the database
+      function getCountrySearchInput(){
+        var tempCountry = $('#searchText').val();
+        var country = tempCountry.toTitleCase();
+        console.log("COUNTRY: "+ country);
+      
+        Meteor.call("getAllCountries", function(err, result){
+          var temp = JSON.parse(result);
 
+          var inDatabase = false;
+
+          for(var i=0; i<27;i++){
+            if(country===temp[i]){
+              inDatabase = true;
+            }
+          }
+
+          if(inDatabase){
+            window.location.assign("/country/" + country);
+          } else {
+            alert("Please enter one of these countries: "+ temp);
+          }
+        });
+      };
+
+    //when save country is clicked - add the country to that user's db
+    function saveCountry(){
+      console.log("in saveCountry");
+      var currentCountry = $("#countryName").text();
+      console.log("currentCountry: "+ currentCountry);
+
+      Meteor.apply("updateCountries", [currentCountry], function(err, result){
+        //do everything in server
+        if(err){
+        console.log("Error in updateCountries: "+err);
+        }else{
+          console.log("Result of updateCountries: "+result);
+          if(result){ //if true than set button to "remove country"
+            $('#saveCountryButton').html("Remove Country");
+          }else{ //if false then set button to "save country"
+            $('#saveCountryButton').html("Save Country");
+          }
+        }
+      });
+
+    }
+    </script>
 </head>
 
 <body>
@@ -132,7 +125,7 @@ function saveCountry(){
       </div><!-- /.navbar-collapse -->
   </nav>
 </body>
-<!---------------------------------------------------------------------------------------------->
+
 
 <template name="home">
    <div id ="startpage" class="container-fluid">
@@ -185,7 +178,7 @@ function saveCountry(){
       </div>
     </div>
 </template>
-<!---------------------------------------------------------------------------------------------->
+
 
 <template name="saved">
     <div id="instafeed" style="background-color:#A75050; min-height:700px;">
@@ -197,16 +190,16 @@ function saveCountry(){
     </div>
 </template>	
 
-<!---------------------------------------------------------------------------------------------->
 <template name="map">
   <div class ="first segment container-fluid">
         <div id="map-blurb"><h1 style="padding: 30px 0px 0px 30px; font-weight:lighter; color: #A75050; letter-spacing: 1px"> what's trending today? </h1>
       </div>
-
+        <!--The code to create this map came from Google Charts: Geocharts found at 
+        https://developers.google.com/chart/interactive/docs/gallery/geochart  -->
         <div id="regions_div"></div> 
       </div> <!--end first segment container-fluid -->
 </template> 
-<!---------------------------------------------------------------------------------------------->
+
 
 <template name="countryTemplate" id="countryTemplateID">
     <div id="instafeed" style="background-color:#A75050; min-height:700px;">
@@ -218,43 +211,7 @@ function saveCountry(){
     </div>
 </template>
 
-<!-- LOGIN SHIT THIS BETTER WORK -->
 
-
-<!---------------------------------------------------->
-
-<!-- this is actually to sign up; pretty buttons -->
-<!-- <template name="login">
-   <div class="login_shit">
-    <div class="container">
-      <div class="input-group input-group-lg">
-      <form id="form-signin" style="margin: 150px 0px 0px 450px">
-        <h2 class="form-signin-heading" style="text-align:center; color:white; font-weight: lighter">gTrends</h2>
-
-            <div class="input-group input-group-sm" style="margin-bottom:20px">
-              <input type="text" class="form-control email" placeholder="Email address" style="text-align:center;" id="inputEmail">
-              <input type="text" class="form-control password" placeholder="Password" style="text-align:center" id="inputPassword">
-            </div>
-            <button class="btn btn-lg btn-info outline" type="submit" id="signInButton" style="margin-left: 80px">Create Account</button>
-      </form>
-    </div>
-    </div> 
-</div>
-
-</template> -->
-
-<!-- <template name="register">
-
-    <form id="register-form" action="action">
-      <div>
-       <input type="email" id="account-email" />
-       <input type="password" id="account-password" />
-       <input type="submit" id="create-account" value="Create an Account" />
-     </div>
-   </form>
-</template> -->
-
-<!---------------------------------------------------->
 
 <template name="main">
     <!-- {{> alert}} -->
@@ -295,23 +252,9 @@ function saveCountry(){
 </template>
 
 
-<!-- <template name="signOut">
-    <div class="connected">
-      <nav class="navbar navbar-fixed-top">
-        <ul class="nav navbar-nav navbar-right">
-          <div class="btn-group">
-          <button type="button" class="btn btn-info outline" aria-expanded="false" id="signOut"> sign out </button>
-          </div>
-        </ul>
-      </nav>
-    </div>
-</template> -->
-
 <template name="signOut">
     <div class="connected">
-          <button type="button" class="btn btn-info outline" aria-expanded="false" id="signOut"> sign out </button>
-          
-        
+          <button type="button" class="btn btn-info outline" aria-expanded="false" id="signOut"> sign out </button>    
     </div>
 </template>
 
@@ -335,17 +278,6 @@ function saveCountry(){
     </div>
   </div>
 </template>
-
-<!-- <template name="signUp">
-    <div class="sign-up">
-        <form action="/sign-up" class="sign-up-form" id="signUpForm" method="post">
-            <input class="form-control email" id="signUpEmail" name="email" placeholder="Email Address" type="text" >
-            <input class="form-control password" id="signUpPassword" name="password" placeholder="Password" type="password">
-            <input class="btn-submit" type="submit" value="Join Meteorites!">
-        </form>
-    </div>
-</template> -->
-
 
 
 <template name="forgotPassword">
